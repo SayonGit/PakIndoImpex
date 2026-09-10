@@ -1,0 +1,225 @@
+{
+  "meta": {
+    "siteName": "PT. Pakindo Impex Perkasa"
+  },
+  "nav": {
+    "home": "Laman Utama",
+    "about": "Tentang Kami",
+    "products": "Produk",
+    "gallery": "Galeri",
+    "blog": "Blog",
+    "faq": "Soalan Lazim",
+    "contact": "Hubungi Kami",
+    "requestQuote": "Minta Sebut Harga",
+    "menu": "Menu",
+    "close": "Tutup menu"
+  },
+  "cta": {
+    "requestQuote": "Minta Sebut Harga",
+    "getExportPricing": "Dapatkan Harga Eksport",
+    "sendRequirements": "Hantar Keperluan Anda",
+    "contactUs": "Hubungi Kami",
+    "askAboutProduct": "Tanya Tentang Produk Ini",
+    "viewProduct": "Lihat Produk",
+    "learnMore": "Ketahui Lebih Lanjut Tentang Kami",
+    "exploreProducts": "Terokai Produk",
+    "readArticle": "Baca Artikel",
+    "viewAllProducts": "Lihat Semua Produk",
+    "viewAllArticles": "Lihat Semua Artikel",
+    "backToBlog": "Kembali ke Blog",
+    "backToProducts": "Kembali ke Produk"
+  },
+  "switcher": {
+    "label": "Wilayah & Bahasa",
+    "countryLabel": "Negara",
+    "languageLabel": "Bahasa",
+    "note": "Terjemahan selain bahasa Inggeris dijana oleh AI dan sedang disemak untuk ketepatan.",
+    "englishFallback": "Halaman ini dipaparkan dalam bahasa Inggeris."
+  },
+  "footer": {
+    "tagline": "Rakan eksport dan import Indonesia yang menghubungkan produk, pembekal, dan pembeli antarabangsa.",
+    "linksHeading": "Syarikat",
+    "contactHeading": "Hubungi",
+    "newsletterHeading": "Kemas Kini Perdagangan",
+    "newsletterCopy": "Kemas kini sekali-sekala tentang produk dan panduan eksport. Tiada spam.",
+    "newsletterPlaceholder": "Alamat e-mel anda",
+    "newsletterSubmit": "Langgan",
+    "newsletterSuccess": "Terima kasih — anda telah berjaya melanggan.",
+    "newsletterError": "Sesuatu tidak kena. Sila cuba lagi.",
+    "whatsapp": "WhatsApp",
+    "email": "E-mel",
+    "office": "Pejabat",
+    "rights": "Hak cipta terpelihara.",
+    "verifyNotice": "Butiran hubungan yang ditanda [VERIFY] adalah pemegang tempat yang menunggu pengesahan."
+  },
+  "home": {
+    "hero": {
+      "slides": [
+        {
+          "eyebrow": "Rakan Eksport & Import Indonesia",
+          "title": "Pengeksport Pinang yang Anda Percayai",
+          "copy": "PT. Pakindo Impex Perkasa menghubungkan pembeli antarabangsa dengan produk Indonesia melalui sumber yang boleh dipercayai, penyelarasan kualiti, dokumentasi eksport, dan sokongan logistik.",
+          "primaryCta": "Minta Sebut Harga",
+          "secondaryCta": "Terokai Produk"
+        },
+        {
+          "eyebrow": "Sumber • Kualiti • Logistik",
+          "title": "Produk Indonesia. Pasaran Global. Perdagangan Yang Boleh Dipercayai.",
+          "copy": "Daripada penyelarasan pembekal hingga dokumentasi eksport dan sokongan penghantaran, kami membantu pembeli antarabangsa mengendalikan sumber dari Indonesia dengan jelas dan yakin.",
+          "primaryCta": "Minta Sebut Harga",
+          "secondaryCta": "Ketahui Tentang Kami"
+        },
+        {
+          "eyebrow": "Proses Eksport Yang Lebih Jelas",
+          "title": "Dari Pertanyaan Hingga Penghantaran Antarabangsa",
+          "copy": "Proses enam langkah yang tersusun membawa keperluan anda daripada pertanyaan awal melalui pengesahan spesifikasi, dokumentasi, dan pemuatan — sehingga ke penghantaran.",
+          "primaryCta": "Minta Sebut Harga",
+          "secondaryCta": "Lihat Cara Kami Bekerja"
+        }
+      ]
+    },
+    "trust": {
+      "eyebrow": "Mengapa Pakindo",
+      "heading": "Perdagangan Yang Boleh Dipercayai Bermula Dengan Rakan Yang Tepat",
+      "copy": "Sumber antarabangsa memerlukan lebih daripada sekadar mencari produk. Pembeli memerlukan spesifikasi yang jelas, penyelarasan yang boleh diharap, pembungkusan yang sesuai, dokumentasi yang tepat, serta sokongan penghantaran. Pakindo Impex Perkasa berusaha menjadikan proses ini lebih jelas dan cekap daripada pertanyaan sehingga penghantaran.",
+      "cards": [
+        {
+          "title": "Sumber Produk Yang Boleh Dipercayai",
+          "copy": "Kami menyelaraskan sumber produk mengikut keperluan pembeli dan spesifikasi yang dipersetujui."
+        },
+        {
+          "title": "Pengendalian Berfokuskan Kualiti",
+          "copy": "Keperluan produk disemak dengan teliti supaya pembeli dan pembekal mempunyai pemahaman yang jelas tentang jangkaan kualiti."
+        },
+        {
+          "title": "Harga Eksport Yang Kompetitif",
+          "copy": "Kami bekerjasama dengan pembekal dan pembeli untuk menyediakan sebut harga yang mencerminkan spesifikasi produk, kuantiti, pembungkusan, dan keperluan penghantaran."
+        },
+        {
+          "title": "Sokongan Eksport & Logistik",
+          "copy": "Kami menyelaraskan dokumentasi, pembungkusan, pemuatan, dan keperluan berkaitan penghantaran sepanjang proses eksport."
+        }
+      ]
+    },
+    "about": {
+      "eyebrow": "Tentang Pakindo",
+      "heading": "Rakan Indonesia Anda Untuk Perdagangan Global",
+      "copy1": "PT. Pakindo Impex Perkasa ialah sebuah syarikat perdagangan serta eksport/import Indonesia yang memberi tumpuan kepada menghubungkan produk Indonesia dengan pembeli antarabangsa.",
+      "copy2": "Peranan kami merangkumi sumber produk, penyelarasan pembekal, pengurusan spesifikasi produk, penyelarasan kualiti, pembungkusan, dokumentasi eksport, dan sokongan logistik.",
+      "cta": "Ketahui Lebih Lanjut Tentang Kami"
+    },
+    "products": {
+      "eyebrow": "Apa Yang Kami Sumberkan",
+      "heading": "Produk Dari Indonesia",
+      "intro": "Terokai kategori produk kami dan hubungi kami dengan spesifikasi, kuantiti, pembungkusan, dan destinasi yang anda perlukan.",
+      "customSourcing": {
+        "title": "Sumber Tersuai",
+        "copy": "Mencari produk Indonesia yang tertentu? Hantarkan keperluan anda dan kami akan menyemak kemungkinan sumbernya.",
+        "cta": "Minta Sebut Harga"
+      },
+      "comingSoon": "Butiran kategori akan datang tidak lama lagi"
+    },
+    "process": {
+      "eyebrow": "Cara Kami Bekerja",
+      "heading": "Proses Eksport Yang Lebih Jelas",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Hantar Keperluan Anda",
+          "copy": "Beritahu kami produk, spesifikasi, kuantiti, pembungkusan, destinasi, dan keperluan lain."
+        },
+        {
+          "number": "02",
+          "title": "Semakan Produk & Harga",
+          "copy": "Kami menyemak pilihan sumber dan menyediakan sebut harga berdasarkan keperluan yang diminta."
+        },
+        {
+          "number": "03",
+          "title": "Pengesahan Spesifikasi",
+          "copy": "Kualiti produk, gred, pembungkusan, kuantiti, dan butiran komersial lain disahkan."
+        },
+        {
+          "number": "04",
+          "title": "Penyediaan Produk",
+          "copy": "Penyediaan produk dan pembungkusan diselaraskan mengikut keperluan yang dipersetujui."
+        },
+        {
+          "number": "05",
+          "title": "Dokumentasi & Pemuatan",
+          "copy": "Dokumentasi eksport dan urusan penghantaran/pemuatan diselaraskan."
+        },
+        {
+          "number": "06",
+          "title": "Penghantaran Antarabangsa",
+          "copy": "Penghantaran diteruskan mengikut urusan perdagangan dan logistik yang dipersetujui."
+        }
+      ]
+    },
+    "buyerBenefits": {
+      "eyebrow": "Dibina Berdasarkan Anda",
+      "heading": "Dibina Mengikut Keperluan Anda",
+      "copy": "Setiap pesanan antarabangsa boleh mempunyai keperluan yang berbeza. Kongsikan butiran pasaran dan penghantaran anda, dan kami akan menyemak pendekatan sumber dan eksport yang sesuai.",
+      "items": [
+        "Spesifikasi Produk",
+        "Keperluan Kualiti",
+        "Keperluan Pembungkusan",
+        "Kuantiti / MOQ",
+        "Pelabuhan Destinasi",
+        "Terma Penghantaran",
+        "Dokumentasi",
+        "Jadual Penghantaran"
+      ]
+    },
+    "markets": {
+      "eyebrow": "Capaian Global",
+      "heading": "Memenuhi Keperluan Pembeli Antarabangsa",
+      "copy": "Kami bekerjasama dengan pembeli antarabangsa yang mencari produk Indonesia dan sokongan perdagangan. Kongsikan negara destinasi dan keperluan anda supaya kami dapat menyemak pilihan sumber dan penghantaran yang sesuai.",
+      "cta": "Kongsikan Keperluan Anda"
+    },
+    "faq": {
+      "eyebrow": "Soalan Lazim",
+      "heading": "Soalan Lazim",
+      "cta": "Lihat Semua Soalan Lazim",
+      "items": [
+        {
+          "question": "Produk apakah yang boleh saya perolehi dari Indonesia?",
+          "answer": "Kami menawarkan produk Indonesia terpilih dan boleh menyemak keperluan sumber untuk produk tertentu. Sila hubungi kami dengan nama produk, spesifikasi, kuantiti, dan destinasi."
+        },
+        {
+          "question": "Bolehkah saya meminta spesifikasi produk yang tertentu?",
+          "answer": "Ya, pembeli boleh menyerahkan spesifikasi yang diperlukan untuk disemak. Ketersediaan dan kebolehlaksanaan sumber perlu disahkan bagi setiap pertanyaan."
+        },
+        {
+          "question": "Maklumat apakah yang anda perlukan untuk sebut harga?",
+          "answer": "Sertakan nama produk, kuantiti, kualiti/spesifikasi, pembungkusan, pelabuhan destinasi, Incoterm pilihan, dan sebarang keperluan tambahan."
+        },
+        {
+          "question": "Bolehkah anda menguruskan sampel?",
+          "answer": "Ketersediaan sampel bergantung kepada produk dan keperluan pesanan. Hubungi kami dengan permintaan produk anda untuk mengesahkan pilihan yang tersedia."
+        },
+        {
+          "question": "Apakah pilihan pembungkusan yang tersedia?",
+          "answer": "Pembungkusan bergantung kepada produk dan keperluan pembeli. Hubungi kami dengan format pembungkusan pilihan anda supaya dapat disemak."
+        },
+        {
+          "question": "Bolehkah anda memberi sebut harga FOB, CFR, atau CIF?",
+          "answer": "Terma penghantaran bergantung kepada penghantaran dan destinasi. Sila sertakan pelabuhan destinasi dan Incoterm pilihan anda dalam pertanyaan anda."
+        },
+        {
+          "question": "Apakah kuantiti pesanan minimum?",
+          "answer": "MOQ bergantung kepada produk, gred, pembungkusan, dan keperluan penghantaran. Sila minta sebut harga untuk produk tertentu yang anda perlukan."
+        },
+        {
+          "question": "Negara destinasi manakah yang anda layani?",
+          "answer": "Kami menyemak pertanyaan daripada pembeli antarabangsa di seluruh dunia. Kongsikan negara destinasi dan keperluan anda supaya kami dapat mengesahkan kebolehlaksanaannya."
+        }
+      ]
+    },
+    "finalCta": {
+      "heading": "Bersedia Untuk Memperoleh Produk Dari Indonesia?",
+      "copy": "Hantarkan keperluan produk, kuantiti, spesifikasi kualiti, keutamaan pembungkusan, dan destinasi anda kepada kami. Pasukan kami akan menyemak pertanyaan anda dan membalas dengan langkah seterusnya.",
+      "primaryCta": "Minta Sebut Harga",
+      "secondaryCta": "Hubungi Kami"
+    }
+  }
+}

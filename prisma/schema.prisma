@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  // Pooled (PgBouncer) connection for normal app queries.
+  url       = env("DATABASE_URL")
+  // Direct connection, used only for `prisma migrate` / `db push` (schema
+  // changes need a non-pooled connection).
+  directUrl = env("DIRECT_URL")
+}
+
+/// Product categories offered for sourcing/export. Populated from verified
+/// content only — see assets/CONTENT.md section 2.1.
+model Product {
+  id                String   @id @default(cuid())
+  slug              String   @unique
+  name              String
+  category          String
+  shortDescription  String
+  description       String
+  origin            String   @default("Indonesia")
+  grade             String?
+  size              String?
+  processing        String?
+  moisture          String?
+  packaging         String?
+  moq               String?
+  hsCode            String?
+  loadingPort       String?
+  availability      String?
+  seoTitle          String
+  seoDescription    String
+  featuredImageAlt  String?
+  featured          Boolean  @default(false)
+  sortOrder         Int      @default(0)
+  relatedArticles   Article[] @relation("ProductArticles")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([category])
+}
+
+/// Blog articles targeting buyers researching Indonesian suppliers.
+model Article {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  title           String
+  excerpt         String
+  content         String
+  author          String
+  publishDate     DateTime
+  category        String
+  tags            String[]  @default([])
+  seoTitle        String
+  seoDescription  String
+  published       Boolean   @default(false)
+  relatedProducts Product[] @relation("ProductArticles")
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([published, publishDate])
+}
+
+enum InquiryStatus {
+  NEW
+  REVIEWED
+  ARCHIVED
+}
+
+/// Submissions from the Request a Quote page (primary site conversion).
+model QuoteRequest {
+  id                      String        @id @default(cuid())
+  name                    String
+  company                 String?
+  email                   String
+  phone                   String
+  country                 String
+  product                 String
+  quantity                String
+  quality                 String?
+  specification           String?
+  packaging               String?
+  destinationPort         String?
+  incoterm                String?
+  targetDeliveryDate      String?
+  additionalRequirements  String?
+  locale                  String        @default("en")
+  status                  InquiryStatus @default(NEW)
+  createdAt               DateTime      @default(now())
+
+  @@index([status, createdAt])
+}
+
+/// Submissions from the general Contact page.
+model ContactMessage {
+  id         String        @id @default(cuid())
+  name       String
+  email      String
+  phone      String?
+  country    String?
+  subject    String?
+  message    String
+  locale     String        @default("en")
+  status     InquiryStatus @default(NEW)
+  createdAt  DateTime      @default(now())
+
+  @@index([status, createdAt])
+}
+
+/// Newsletter / mailing-list signups (footer + homepage forms).
+model NewsletterSubscriber {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  locale     String   @default("en")
+  createdAt  DateTime @default(now())
+}

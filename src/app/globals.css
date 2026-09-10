@@ -1,26 +1,314 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-paper: #fbfaf6;
+  --color-white: #ffffff;
+
+  --color-primary-50: #eaf5ea;
+  --color-primary-100: #cfe8d0;
+  --color-primary-200: #a3d2a6;
+  --color-primary-300: #71b676;
+  --color-primary-400: #439a4a;
+  --color-primary-500: #1f7e28;
+  --color-primary-600: #126a16;
+  --color-primary-700: #0e5512;
+  --color-primary-800: #0b420e;
+  --color-primary-900: #08300a;
+  --color-primary-950: #041e06;
+
+  --color-secondary-50: #fdecec;
+  --color-secondary-100: #fad0cf;
+  --color-secondary-200: #f5a3a1;
+  --color-secondary-300: #ee7370;
+  --color-secondary-400: #e2453f;
+  --color-secondary-500: #d92a23;
+  --color-secondary-600: #cb1514;
+  --color-secondary-700: #a3110f;
+  --color-secondary-800: #7c0d0c;
+  --color-secondary-900: #560908;
+  --color-secondary-950: #330504;
+
+  --color-gold-50: #fffaf0;
+  --color-gold-100: #fef3da;
+  --color-gold-200: #fde9b4;
+  --color-gold-300: #fddf8e;
+  --color-gold-400: #fdda7e;
+  --color-gold-500: #fbc94f;
+  --color-gold-600: #f0ad1f;
+  --color-gold-700: #c48815;
+  --color-gold-800: #8f6310;
+  --color-gold-900: #5c400a;
+
+  --color-ink-50: #f7f7f5;
+  --color-ink-100: #eeede9;
+  --color-ink-200: #dedcd4;
+  --color-ink-300: #c2bfb3;
+  --color-ink-400: #9c988a;
+  --color-ink-500: #7a766a;
+  --color-ink-600: #5c594f;
+  --color-ink-700: #46443c;
+  --color-ink-800: #302e29;
+  --color-ink-900: #1c1b17;
+  --color-ink-950: #100f0d;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-poppins), var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-paper: var(--color-paper);
+  --color-white: var(--color-white);
+
+  --color-primary-50: var(--color-primary-50);
+  --color-primary-100: var(--color-primary-100);
+  --color-primary-200: var(--color-primary-200);
+  --color-primary-300: var(--color-primary-300);
+  --color-primary-400: var(--color-primary-400);
+  --color-primary-500: var(--color-primary-500);
+  --color-primary-600: var(--color-primary-600);
+  --color-primary-700: var(--color-primary-700);
+  --color-primary-800: var(--color-primary-800);
+  --color-primary-900: var(--color-primary-900);
+  --color-primary-950: var(--color-primary-950);
+
+  --color-secondary-50: var(--color-secondary-50);
+  --color-secondary-100: var(--color-secondary-100);
+  --color-secondary-200: var(--color-secondary-200);
+  --color-secondary-300: var(--color-secondary-300);
+  --color-secondary-400: var(--color-secondary-400);
+  --color-secondary-500: var(--color-secondary-500);
+  --color-secondary-600: var(--color-secondary-600);
+  --color-secondary-700: var(--color-secondary-700);
+  --color-secondary-800: var(--color-secondary-800);
+  --color-secondary-900: var(--color-secondary-900);
+  --color-secondary-950: var(--color-secondary-950);
+
+  --color-gold-50: var(--color-gold-50);
+  --color-gold-100: var(--color-gold-100);
+  --color-gold-200: var(--color-gold-200);
+  --color-gold-300: var(--color-gold-300);
+  --color-gold-400: var(--color-gold-400);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-600: var(--color-gold-600);
+  --color-gold-700: var(--color-gold-700);
+  --color-gold-800: var(--color-gold-800);
+  --color-gold-900: var(--color-gold-900);
+
+  --color-ink-50: var(--color-ink-50);
+  --color-ink-100: var(--color-ink-100);
+  --color-ink-200: var(--color-ink-200);
+  --color-ink-300: var(--color-ink-300);
+  --color-ink-400: var(--color-ink-400);
+  --color-ink-500: var(--color-ink-500);
+  --color-ink-600: var(--color-ink-600);
+  --color-ink-700: var(--color-ink-700);
+  --color-ink-800: var(--color-ink-800);
+  --color-ink-900: var(--color-ink-900);
+  --color-ink-950: var(--color-ink-950);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-kenburns: kenburns 9s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  --animate-slide-progress: slide-progress 7s linear forwards;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.12);
+    }
+  }
+
+  @keyframes slide-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -16px, 0);
+    }
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink-900);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}
+
+::selection {
+  background: var(--color-primary-600);
+  color: var(--color-white);
+}
+
+/* ---- Elevated Glass design primitives ---- */
+
+.ease-spring {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Faint vertical pinstripe texture for light hero/product sections. */
+.stripe-texture {
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-ink-900) 5%, transparent) 0,
+    color-mix(in srgb, var(--color-ink-900) 5%, transparent) 1px,
+    transparent 1px,
+    transparent 28px
+  );
+}
+
+/* Frosted "glass" that reads correctly on a light/paper background — the
+   .glass utility relies on a dark or colorful backdrop to show through. */
+.glass-on-light {
+  background: color-mix(in srgb, var(--color-white) 70%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--color-ink-900) 8%, transparent);
+}
+
+/* Frosted glass surface. Use on top of a color/texture background, never on
+   plain white/paper (blur has nothing to soften there). */
+.glass {
+  background: color-mix(in srgb, var(--color-white) 10%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--color-white) 18%, transparent);
+}
+
+.glass-light {
+  background: color-mix(in srgb, var(--color-white) 70%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--color-white) 60%, transparent);
+}
+
+/* Soft, layered "glow" shadows instead of Tailwind's harsher defaults. */
+.shadow-soft {
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--color-ink-950) 6%, transparent),
+    0 12px 28px -12px color-mix(in srgb, var(--color-ink-950) 16%, transparent);
+}
+.shadow-soft-lg {
+  box-shadow:
+    0 2px 4px color-mix(in srgb, var(--color-ink-950) 6%, transparent),
+    0 24px 48px -16px color-mix(in srgb, var(--color-ink-950) 24%, transparent);
+}
+
+/* Contained, blurred brand-color blobs for background depth. Deliberately
+   restrained (small, low-opacity, fixed shapes) to avoid the "generic SaaS
+   gradient" look while still giving sections a sense of depth/light. */
+.glow-mesh {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.glow-mesh::before,
+.glow-mesh::after {
+  content: "";
+  position: absolute;
+  width: 42vw;
+  max-width: 560px;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.35;
+}
+.glow-mesh::before {
+  top: -10%;
+  right: -8%;
+  background: radial-gradient(circle, var(--color-primary-500), transparent 70%);
+}
+.glow-mesh::after {
+  bottom: -15%;
+  left: -10%;
+  background: radial-gradient(circle, var(--color-gold-400), transparent 70%);
+  opacity: 0.18;
+}
+
+/* Reveal-on-scroll: elements start hidden, JS adds .is-visible when in view.
+   No-JS and reduced-motion users always see full content. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.reveal.is-visible {
+  animation: var(--animate-fade-up);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+}
+
+html.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+.marquee-track {
+  animation: var(--animate-marquee);
+}
+.marquee-track:hover,
+.marquee-track:focus-within {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    overflow-x: auto;
+  }
 }

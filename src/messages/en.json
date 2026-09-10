@@ -1,0 +1,225 @@
+{
+  "meta": {
+    "siteName": "PT. Pakindo Impex Perkasa"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "requestQuote": "Request a Quote",
+    "menu": "Menu",
+    "close": "Close menu"
+  },
+  "cta": {
+    "requestQuote": "Request a Quote",
+    "getExportPricing": "Get Export Pricing",
+    "sendRequirements": "Send Your Requirements",
+    "contactUs": "Contact Us",
+    "askAboutProduct": "Ask About This Product",
+    "viewProduct": "View Product",
+    "learnMore": "Learn More About Us",
+    "exploreProducts": "Explore Products",
+    "readArticle": "Read Article",
+    "viewAllProducts": "View All Products",
+    "viewAllArticles": "View All Articles",
+    "backToBlog": "Back to Blog",
+    "backToProducts": "Back to Products"
+  },
+  "switcher": {
+    "label": "Region & Language",
+    "countryLabel": "Country",
+    "languageLabel": "Language",
+    "note": "Translations outside English are AI-generated and being reviewed for accuracy.",
+    "englishFallback": "This page is shown in English."
+  },
+  "footer": {
+    "tagline": "Indonesian export and import partner connecting products, suppliers, and international buyers.",
+    "linksHeading": "Company",
+    "contactHeading": "Contact",
+    "newsletterHeading": "Trade Updates",
+    "newsletterCopy": "Occasional updates on products and export guides. No spam.",
+    "newsletterPlaceholder": "Your email address",
+    "newsletterSubmit": "Subscribe",
+    "newsletterSuccess": "Thank you — you're subscribed.",
+    "newsletterError": "Something went wrong. Please try again.",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "office": "Office",
+    "rights": "All rights reserved.",
+    "verifyNotice": "Contact details marked [VERIFY] are placeholders pending confirmation."
+  },
+  "home": {
+    "hero": {
+      "slides": [
+        {
+          "eyebrow": "Indonesian Export & Import Partner",
+          "title": "Your Trusted Areca Nut Exporter",
+          "copy": "PT. Pakindo Impex Perkasa connects international buyers with Indonesian products through reliable sourcing, quality coordination, export documentation, and logistics support.",
+          "primaryCta": "Request a Quote",
+          "secondaryCta": "Explore Products"
+        },
+        {
+          "eyebrow": "Sourcing • Quality • Logistics",
+          "title": "Indonesian Products. Global Markets. Reliable Trade.",
+          "copy": "From supplier coordination to export documentation and shipment support, we help international buyers navigate sourcing from Indonesia with clarity and confidence.",
+          "primaryCta": "Request a Quote",
+          "secondaryCta": "Learn About Us"
+        },
+        {
+          "eyebrow": "A Clearer Export Process",
+          "title": "From Inquiry to International Shipment",
+          "copy": "A structured six-step process takes your requirements from initial inquiry through specification confirmation, documentation, and loading — all the way to shipment.",
+          "primaryCta": "Request a Quote",
+          "secondaryCta": "See How We Work"
+        }
+      ]
+    },
+    "trust": {
+      "eyebrow": "Why Pakindo",
+      "heading": "Reliable Trade Starts With the Right Partner",
+      "copy": "International sourcing requires more than finding a product. Buyers need clear specifications, dependable coordination, suitable packaging, accurate documentation, and shipment support. Pakindo Impex Perkasa works to make the process clearer and more efficient from inquiry to shipment.",
+      "cards": [
+        {
+          "title": "Reliable Product Sourcing",
+          "copy": "We coordinate product sourcing according to buyer requirements and agreed specifications."
+        },
+        {
+          "title": "Quality-Focused Handling",
+          "copy": "Product requirements are reviewed carefully so buyers and suppliers have a clear understanding of quality expectations."
+        },
+        {
+          "title": "Competitive Export Pricing",
+          "copy": "We work with suppliers and buyers to develop quotations that reflect product specifications, quantities, packaging, and shipping requirements."
+        },
+        {
+          "title": "Export & Logistics Support",
+          "copy": "We coordinate documentation, packaging, loading, and shipment-related requirements throughout the export process."
+        }
+      ]
+    },
+    "about": {
+      "eyebrow": "About Pakindo",
+      "heading": "Your Indonesian Partner for Global Trade",
+      "copy1": "PT. Pakindo Impex Perkasa is an Indonesian trading and export/import company focused on connecting Indonesian products with international buyers.",
+      "copy2": "Our role can include sourcing, supplier coordination, product specification management, quality coordination, packaging, export documentation, and logistics support.",
+      "cta": "Learn More About Us"
+    },
+    "products": {
+      "eyebrow": "What We Source",
+      "heading": "Products from Indonesia",
+      "intro": "Explore our product categories and contact us with your required specifications, quantity, packaging, and destination.",
+      "customSourcing": {
+        "title": "Custom Sourcing",
+        "copy": "Looking for a specific Indonesian product? Send us your requirements and we can review sourcing possibilities.",
+        "cta": "Request a Quote"
+      },
+      "comingSoon": "Category details coming soon"
+    },
+    "process": {
+      "eyebrow": "How We Work",
+      "heading": "A Clearer Export Process",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Send Your Requirements",
+          "copy": "Tell us the product, specification, quantity, packaging, destination, and other requirements."
+        },
+        {
+          "number": "02",
+          "title": "Product & Price Review",
+          "copy": "We review sourcing options and prepare a quotation based on the requested requirements."
+        },
+        {
+          "number": "03",
+          "title": "Specification Confirmation",
+          "copy": "Product quality, grade, packaging, quantity, and other commercial details are confirmed."
+        },
+        {
+          "number": "04",
+          "title": "Product Preparation",
+          "copy": "Product preparation and packaging are coordinated according to the agreed requirements."
+        },
+        {
+          "number": "05",
+          "title": "Documentation & Loading",
+          "copy": "Export documentation and shipment/loading arrangements are coordinated."
+        },
+        {
+          "number": "06",
+          "title": "International Shipment",
+          "copy": "The shipment proceeds according to the agreed trade and logistics arrangements."
+        }
+      ]
+    },
+    "buyerBenefits": {
+      "eyebrow": "Built Around You",
+      "heading": "Built Around Your Requirements",
+      "copy": "Every international order can have different requirements. Share the details of your market and shipment, and we can review the appropriate sourcing and export approach.",
+      "items": [
+        "Product Specifications",
+        "Quality Requirements",
+        "Packaging Requirements",
+        "Quantity / MOQ",
+        "Destination Port",
+        "Shipping Terms",
+        "Documentation",
+        "Delivery Schedule"
+      ]
+    },
+    "markets": {
+      "eyebrow": "Global Reach",
+      "heading": "Serving International Buyer Requirements",
+      "copy": "We work with international buyers looking for Indonesian products and trade support. Share your destination country and requirements so we can review the appropriate sourcing and shipment options.",
+      "cta": "Share Your Requirements"
+    },
+    "faq": {
+      "eyebrow": "Common Questions",
+      "heading": "Frequently Asked Questions",
+      "cta": "View All FAQs",
+      "items": [
+        {
+          "question": "What products can I source from Indonesia?",
+          "answer": "We offer selected Indonesian products and can review sourcing requirements for specific products. Please contact us with the product name, specification, quantity, and destination."
+        },
+        {
+          "question": "Can I request a specific product specification?",
+          "answer": "Yes, buyers can submit their required specifications for review. Availability and sourcing feasibility should be confirmed for each inquiry."
+        },
+        {
+          "question": "What information do you need for a quotation?",
+          "answer": "Include product name, quantity, quality/specification, packaging, destination port, preferred Incoterm, and any additional requirements."
+        },
+        {
+          "question": "Can you arrange samples?",
+          "answer": "Sample availability depends on the product and order requirements. Contact us with your product request to confirm the available options."
+        },
+        {
+          "question": "What packaging options are available?",
+          "answer": "Packaging depends on the product and buyer requirements. Contact us with your preferred packaging format so it can be reviewed."
+        },
+        {
+          "question": "Can you quote FOB, CFR, or CIF?",
+          "answer": "Shipping terms depend on the shipment and destination. Please include your destination port and preferred Incoterm in your inquiry."
+        },
+        {
+          "question": "What is the minimum order quantity?",
+          "answer": "MOQ depends on the product, grade, packaging, and shipment requirements. Please request a quotation for the specific product you need."
+        },
+        {
+          "question": "Which destination countries do you serve?",
+          "answer": "We review inquiries from international buyers worldwide. Share your destination country and requirements so we can confirm feasibility."
+        }
+      ]
+    },
+    "finalCta": {
+      "heading": "Ready to Source from Indonesia?",
+      "copy": "Send us your product requirements, quantity, quality specifications, packaging preferences, and destination. Our team can review your inquiry and respond with the next steps.",
+      "primaryCta": "Request a Quote",
+      "secondaryCta": "Contact Us"
+    }
+  }
+}
