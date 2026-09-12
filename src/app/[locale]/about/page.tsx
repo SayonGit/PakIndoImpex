@@ -68,7 +68,7 @@ export default async function AboutPage({
 
       <section className="bg-white pb-16 sm:pb-24">
         <Container>
-          <h2 className="text-2xl font-extrabold tracking-tight text-ink-950 sm:text-3xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
             What We Do
           </h2>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

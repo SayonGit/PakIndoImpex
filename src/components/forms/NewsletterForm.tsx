@@ -64,7 +64,7 @@ export function NewsletterForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-gold-400 px-5 py-2.5 text-sm font-semibold text-ink-950 shadow-[0_8px_20px_-8px_rgba(240,173,31,0.4)] transition-all duration-300 ease-spring hover:-translate-y-0.5 hover:bg-gold-300 disabled:pointer-events-none disabled:opacity-60"
+          className="btn-sheen group inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-br from-gold-300 to-gold-500 px-5 py-2.5 text-sm font-semibold text-ink-950 shadow-[0_8px_20px_-8px_rgba(240,173,31,0.4)] transition-all duration-300 ease-spring hover:-translate-y-0.5 hover:scale-[1.02] hover:from-gold-400 hover:to-gold-600 hover:shadow-[0_16px_32px_-10px_rgba(240,173,31,0.55)] active:scale-100 disabled:pointer-events-none disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:scale-100"
         >
           {status === "loading" && <Loader2 className="size-4 animate-spin" aria-hidden />}
           {t("newsletterSubmit")}

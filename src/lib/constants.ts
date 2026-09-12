@@ -9,26 +9,33 @@ export const COMPANY = {
   legalName: "PT. Pakindo Impex Perkasa",
   shortName: "Pakindo Impex Perkasa",
   country: "Indonesia",
-  whatsapp: "[VERIFY: WHATSAPP NUMBER]",
-  email: "[VERIFY: EMAIL ADDRESS]",
-  address: "[VERIFY: OFFICE ADDRESS]",
-  businessHours: "[VERIFY: BUSINESS HOURS]",
+  whatsapp: "+6281310188888",
+  email: "info@pakindoimpex.com",
+  address: "PT. Pakindo Impex Perkasa, Desa Tangkit, RT. 001, Sungai Gelam, Kabupaten Muaro Jambi, Jambi, Indonesia",
+  businessHours: "Monday – Friday: 8:00 AM – 4:00 PM / Saturday: 8:00 AM – 1:00 PM / Sunday: Closed",
 } as const;
+
+/** wa.me deep link for the floating WhatsApp button. */
+export const WHATSAPP_LINK =
+  "https://wa.me/+6281310188888/?text=Hello,%20I%20visited%20your%20website%20and%20would%20like%20more%20information%20about%20your%20products.";
 
 export const NAV_LINKS = [
   { key: "home", href: "/" },
   { key: "about", href: "/about" },
-  { key: "products", href: "/products" },
+  { key: "products", href: "/#products" },
   { key: "gallery", href: "/gallery" },
   { key: "blog", href: "/blog" },
-  { key: "faq", href: "/faq" },
+  { key: "faq", href: "/#faq" },
   { key: "contact", href: "/contact" },
 ] as const;
 
 export const INCOTERMS = ["FOB", "CFR", "CIF"] as const;
 
-export const PRODUCT_CATEGORIES = [
-  "Areca Nut",
-  "[PRODUCT CATEGORY 2]",
-  "[PRODUCT CATEGORY 3]",
-] as const;
+/**
+ * Forms/processing variants of the one verified export product (areca /
+ * betel nut). These are not separate database-backed product pages — all
+ * three link back to the single real "Areca Nut" product record — but the
+ * names themselves are real, so they're safe to display directly (unlike
+ * fabricated specs, grades, or demand claims, which stay [VERIFY: ...]).
+ */
+export const PRODUCT_CATEGORIES = ["Split Betel Nut", "Whole Betel Nut", "Roasted Areca Nut"] as const;

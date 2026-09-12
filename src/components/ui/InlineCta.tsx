@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { QuoteModalTrigger } from "@/components/quote/QuoteModalTrigger";
 import { DotGrid } from "@/components/ui/DotGrid";
 
 /** Slim banner CTA used to close out interior pages (About, Export Process, FAQ, ...). */
@@ -10,7 +11,8 @@ export function InlineCta({
 }: {
   message: string;
   ctaLabel: string;
-  ctaHref: string;
+  /** Omit to open the Request a Quote modal instead of navigating to a page. */
+  ctaHref?: string;
 }) {
   return (
     <section className="py-16 sm:py-20">
@@ -19,9 +21,15 @@ export function InlineCta({
           <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-white/[0.05]" />
           <div className="glow-mesh" />
           <p className="relative max-w-xl text-lg font-semibold sm:text-xl">{message}</p>
-          <Button href={ctaHref} variant="gold" showArrow className="relative shrink-0">
-            {ctaLabel}
-          </Button>
+          {ctaHref ? (
+            <Button href={ctaHref} variant="gold" showArrow className="relative shrink-0">
+              {ctaLabel}
+            </Button>
+          ) : (
+            <QuoteModalTrigger variant="gold" showArrow className="relative shrink-0">
+              {ctaLabel}
+            </QuoteModalTrigger>
+          )}
         </div>
       </Container>
     </section>

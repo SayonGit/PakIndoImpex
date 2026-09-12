@@ -19,21 +19,17 @@
     "getExportPricing": "Get Export Pricing",
     "sendRequirements": "Send Your Requirements",
     "contactUs": "Contact Us",
-    "askAboutProduct": "Ask About This Product",
-    "viewProduct": "View Product",
+    "askAboutProduct": "Request Best Price",
     "learnMore": "Learn More About Us",
-    "exploreProducts": "Explore Products",
     "readArticle": "Read Article",
-    "viewAllProducts": "View All Products",
     "viewAllArticles": "View All Articles",
-    "backToBlog": "Back to Blog",
-    "backToProducts": "Back to Products"
+    "backToBlog": "Back to Blog"
   },
   "switcher": {
     "label": "Region & Language",
     "countryLabel": "Country",
     "languageLabel": "Language",
-    "note": "Translations outside English are AI-generated and being reviewed for accuracy.",
+    "note": "",
     "englishFallback": "This page is shown in English."
   },
   "footer": {
@@ -49,8 +45,7 @@
     "whatsapp": "WhatsApp",
     "email": "Email",
     "office": "Office",
-    "rights": "All rights reserved.",
-    "verifyNotice": "Contact details marked [VERIFY] are placeholders pending confirmation."
+    "rights": "All rights reserved."
   },
   "home": {
     "hero": {
@@ -106,15 +101,59 @@
       "heading": "Your Indonesian Partner for Global Trade",
       "copy1": "PT. Pakindo Impex Perkasa is an Indonesian trading and export/import company focused on connecting Indonesian products with international buyers.",
       "copy2": "Our role can include sourcing, supplier coordination, product specification management, quality coordination, packaging, export documentation, and logistics support.",
+      "tags": [
+        "Sourcing",
+        "Quality Coordination",
+        "Documentation",
+        "Logistics"
+      ],
       "cta": "Learn More About Us"
+    },
+    "achievements": {
+      "eyebrow": "By The Numbers",
+      "heading": "Pakindo at a Glance",
+      "items": [
+        {
+          "value": 8,
+          "label": "Target Markets"
+        },
+        {
+          "value": 3,
+          "label": "Product Categories"
+        },
+        {
+          "value": 6,
+          "label": "Export Process Steps"
+        },
+        {
+          "value": 9,
+          "label": "Languages Supported"
+        }
+      ]
     },
     "products": {
       "eyebrow": "What We Source",
-      "heading": "Products from Indonesia",
+      "heading": "Our Export Products",
       "intro": "Explore our product categories and contact us with your required specifications, quantity, packaging, and destination.",
+      "featured": {
+        "badge": "Bestseller Product",
+        "name": "Split Betel Nut",
+        "description": "Our main export product with consistent quality, stable supply, and strong demand in international markets. Suitable for India, Bangladesh, Pakistan, and Middle East markets.",
+        "features": ["90 to 95% (Best Quality)", "80 to 85%", "70 to 75%", "60 to 65% (Budget)"]
+      },
+      "whole": {
+        "name": "Whole Betel Nut",
+        "description": "Limited stock with high demand in export markets. Suitable for natural whole nut buyers. Quality cannot be guaranteed without cutting, but we ensure careful selection and honest grading.",
+        "features": ["Natural Dry", "Selected Quality", "Export Ready"]
+      },
+      "roasted": {
+        "name": "Roasted Areca Nut",
+        "description": "Roasted areca nut prepared to the buyer's specified size and roast level for the chewing-product trade.",
+        "features": ["Custom Order", "Export Quality", "Flexible Specs"]
+      },
       "customSourcing": {
-        "title": "Custom Sourcing",
-        "copy": "Looking for a specific Indonesian product? Send us your requirements and we can review sourcing possibilities.",
+        "title": "Other Products (By Request)",
+        "copy": "Need a specific form — sliced areca nut, boiled areca nut (B1), or dried young areca nuts? Send us your requirements and we'll review sourcing possibilities.",
         "cta": "Request a Quote"
       },
       "comingSoon": "Category details coming soon"
@@ -122,6 +161,7 @@
     "process": {
       "eyebrow": "How We Work",
       "heading": "A Clearer Export Process",
+      "description": "Every international order can have different requirements. Share the details of your market and shipment, and we can review the appropriate sourcing and export approach.",
       "steps": [
         {
           "number": "01",
@@ -155,31 +195,9 @@
         }
       ]
     },
-    "buyerBenefits": {
-      "eyebrow": "Built Around You",
-      "heading": "Built Around Your Requirements",
-      "copy": "Every international order can have different requirements. Share the details of your market and shipment, and we can review the appropriate sourcing and export approach.",
-      "items": [
-        "Product Specifications",
-        "Quality Requirements",
-        "Packaging Requirements",
-        "Quantity / MOQ",
-        "Destination Port",
-        "Shipping Terms",
-        "Documentation",
-        "Delivery Schedule"
-      ]
-    },
-    "markets": {
-      "eyebrow": "Global Reach",
-      "heading": "Serving International Buyer Requirements",
-      "copy": "We work with international buyers looking for Indonesian products and trade support. Share your destination country and requirements so we can review the appropriate sourcing and shipment options.",
-      "cta": "Share Your Requirements"
-    },
     "faq": {
       "eyebrow": "Common Questions",
       "heading": "Frequently Asked Questions",
-      "cta": "View All FAQs",
       "items": [
         {
           "question": "What products can I source from Indonesia?",

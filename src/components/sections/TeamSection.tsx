@@ -17,7 +17,7 @@ export function TeamSection() {
     <section className="bg-white pb-16 sm:pb-24">
       <Container>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-2xl font-extrabold tracking-tight text-ink-950 sm:text-3xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
             Meet the Team
           </h2>
           <p className="max-w-sm text-xs text-ink-500 italic">

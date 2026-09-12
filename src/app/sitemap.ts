@@ -1,20 +1,11 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/constants";
 import { routing, defaultLocale } from "@/i18n/routing";
-import { getAllProducts, getPublishedArticles } from "@/lib/data";
+import { getPublishedArticles } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
-const STATIC_PATHS = [
-  "/",
-  "/about",
-  "/products",
-  "/gallery",
-  "/blog",
-  "/faq",
-  "/contact",
-  "/request-a-quote",
-];
+const STATIC_PATHS = ["/", "/about", "/gallery", "/blog", "/contact"];
 
 function localizedUrl(path: string, locale: string): string {
   const prefixed = locale === defaultLocale ? path : `/${locale}${path}`;
@@ -28,12 +19,9 @@ function alternates(path: string) {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [products, articles] = await Promise.all([getAllProducts(), getPublishedArticles()]);
+  const articles = await getPublishedArticles();
 
-  const dynamicPaths = [
-    ...products.map((p) => `/products/${p.slug}`),
-    ...articles.map((a) => `/blog/${a.slug}`),
-  ];
+  const dynamicPaths = articles.map((a) => `/blog/${a.slug}`);
 
   const allPaths = [...STATIC_PATHS, ...dynamicPaths];
 

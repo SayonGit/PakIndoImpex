@@ -66,7 +66,7 @@ export default async function BlogArticlePage({
           <p className="text-xs font-bold tracking-[0.2em] text-primary-700 uppercase">
             {article.category}
           </p>
-          <h1 className="mt-3 text-3xl leading-[1.1] font-extrabold tracking-tight text-ink-950 sm:text-4xl">
+          <h1 className="mt-3 text-3xl leading-[1.1] font-semibold tracking-tight text-ink-950 sm:text-4xl">
             {article.title}
           </h1>
           <div className="mt-4 flex items-center gap-2 text-sm text-ink-500">
@@ -95,7 +95,7 @@ export default async function BlogArticlePage({
                 {article.relatedProducts.map((product) => (
                   <li key={product.id}>
                     <Link
-                      href={`/products/${product.slug}`}
+                      href="/#products"
                       className="inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-4 py-2 text-sm font-semibold text-primary-800 transition-all duration-300 ease-spring hover:-translate-y-0.5 hover:border-primary-600 hover:shadow-soft"
                     >
                       {product.name}
@@ -109,11 +109,7 @@ export default async function BlogArticlePage({
         </Container>
       </article>
 
-      <InlineCta
-        message="Ready to request a quotation?"
-        ctaLabel="Request a Quote"
-        ctaHref="/request-a-quote"
-      />
+      <InlineCta message="Ready to request a quotation?" ctaLabel="Request a Quote" />
     </>
   );
 }

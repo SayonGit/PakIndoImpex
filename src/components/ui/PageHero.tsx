@@ -28,11 +28,11 @@ export function PageHero({
       <div className="glow-mesh" />
       <Container className="relative">
         {eyebrow && (
-          <p className="glass mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-gold-300 uppercase">
+          <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-gold-400 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-black uppercase">
             {eyebrow}
           </p>
         )}
-        <h1 className="max-w-3xl text-3xl leading-[1.1] font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
+        <h1 className="max-w-3xl text-3xl leading-[1.1] font-semibold tracking-tight sm:text-4xl lg:text-5xl">
           {title}
         </h1>
         {description && (

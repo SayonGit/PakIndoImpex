@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { NAV_LINKS } from "@/lib/constants";
-import { Button } from "@/components/ui/Button";
+import { QuoteModalTrigger } from "@/components/quote/QuoteModalTrigger";
 import { CountryLanguageSwitcher } from "./CountryLanguageSwitcher";
 
 export function MobileNav() {
@@ -89,9 +89,9 @@ export function MobileNav() {
           </div>
 
           <div className="mt-auto pt-8">
-            <Button href="/request-a-quote" variant="primary" size="lg" className="w-full">
+            <QuoteModalTrigger variant="primary" size="lg" className="w-full" onClick={() => setOpen(false)}>
               {t("requestQuote")}
-            </Button>
+            </QuoteModalTrigger>
           </div>
         </div>
       </div>

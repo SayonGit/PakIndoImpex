@@ -70,6 +70,7 @@ Open http://localhost:3000.
 | `npm run db:migrate` | Create a migration (use instead of `db:push` once you have real data to preserve) |
 | `npm run db:seed` | Re-run `prisma/seed.ts` |
 | `npm run db:studio` | Open Prisma Studio |
+| `npm run translate` | Regenerate every translated locale file from the current `en.json` (see [i18n scope](#i18n-scope-important)) |
 
 ## Environment variables
 
@@ -83,6 +84,8 @@ used inside API routes / Server Components.
   **Inactive until set** — see `src/lib/email.ts`. Until then, submissions
   are still saved to Postgres; nothing is silently lost.
 - `NEXT_PUBLIC_SITE_URL` — used for canonical URLs, sitemap, and OG tags
+- `GEMINI_API_KEY` — only needed to run `npm run translate` (see below). Free
+  to get, no credit card required. Never read by the site itself at runtime.
 
 ## i18n scope (important)
 
@@ -91,8 +94,10 @@ translation quality honest and avoid overbuilding:
 
 - **Fully translated** (nav, footer, and the entire homepage): English,
   Hindi, Urdu, Persian, Nepali, Bengali, Chinese, Malay.
-- **English only for now**: About, Products, Gallery, Blog, FAQ, Contact,
-  and Request a Quote page *bodies*. These pages still render
+- **English only for now**: About, Gallery, Blog, and Contact page *bodies*
+  (there are no separate Products or FAQ pages, and Request a Quote is now
+  a global modal rather than a page — see "Data model / content policy"
+  below). These pages still render
   correctly under every locale (routing, header, footer all localize), but
   show a small notice ("This page is shown in English") when viewed in a
   non-English locale. This is a deliberate scope decision, not a bug — see
@@ -102,24 +107,95 @@ translation quality honest and avoid overbuilding:
   as final marketing copy. This is stated in the switcher UI itself.
 
 Extending translation coverage to the remaining pages just means adding more
-namespaces to `src/messages/*.json` and swapping hardcoded English strings
+namespaces to `src/messages/en.json` and swapping hardcoded English strings
 in those page components for `useTranslations()` calls — the i18n
 architecture (`src/i18n/`, `middleware` → `proxy.ts`) already supports it.
+
+### Keeping translations in sync (`npm run translate`)
+
+**`src/messages/en.json` is the only locale file anyone should hand-edit.**
+Every other `src/messages/<locale>.json` is *generated* by
+`scripts/translate-messages.ts` via the Gemini API (Google's free tier) —
+treat them like a lockfile, not source you write by hand.
+
+```bash
+# After changing copy in en.json, bring every other language back in sync:
+npm run translate
+
+# Add a brand-new language (writes the file + validates its structure
+# against en.json; prints the src/i18n/routing.ts lines to add):
+npm run translate -- ja "Japanese" "日本語"
+npm run translate -- ar "Arabic" "العربية" --rtl
+```
+
+Requires `GEMINI_API_KEY` in `.env` — a **free** key from
+[Google AI Studio](https://aistudio.google.com/apikey): sign in with any
+Google account and generate one, no credit card or billing setup needed.
+This makes the workflow usable by whoever ends up maintaining the site
+day-to-day, not just someone with a paid AI API account.
+
+The script uses `gemini-3.5-flash-lite` (Google's high-throughput, most
+free-tier-friendly model) and automatically retries on transient rate-limit
+errors with backoff, spacing requests out to stay within the free tier's
+per-minute limit. If you exhaust the free tier's *daily* request quota
+(rare for a single resync of ~8 locales), the script fails fast with a
+clear message instead of retrying pointlessly — just wait for the quota to
+reset (~24h) or use a different key.
+
+The script re-translates the full file each run and hard-fails if the
+result's JSON key structure doesn't exactly match `en.json` (same keys,
+same nesting, same array lengths) — so a malformed or incomplete
+translation never silently gets written. Generated files are still
+committed to the repo (not gitignored): Next.js needs them to exist at
+build/request time, and production builds shouldn't depend on a live AI
+API call. Re-run the script and commit the diff whenever `en.json`
+changes.
 
 ## Data model / content policy
 
 - `Product` and `Article` live in Postgres (see `prisma/schema.prisma`) so a
-  future admin panel can manage them directly.
-- Only **Areca Nut** is a real, indexable product page — it's the one
-  product named in the content brief's hero copy. The other placeholder
-  categories render as non-linked "coming soon" cards rather than fake
-  product pages with invented specs.
-- Every unverified field (grade, MOQ, HS code, packaging, loading port,
-  contact details, etc.) is rendered as a visible `[VERIFY: ...]` placeholder
-  — see `src/lib/constants.ts` (`COMPANY`) and `prisma/seed.ts`.
+  future admin panel can manage them directly, even though there's no
+  public-facing product page today (see below).
+- There are no individual product pages (`/products`, `/products/[slug]`
+  were removed). All product content — Split Betel Nut, Whole Betel Nut,
+  Roasted Areca Nut, and an "Other Products (By Request)" card — lives only
+  in the homepage's Products section (`src/components/sections/
+  ProductsPreview.tsx`), anchored at `#products`. General "Products"
+  navigation (header/footer nav, hero secondary CTA, 404 page, blog
+  "related product" links) points to `/#products`; the three product
+  cards' own CTAs open a pre-filled WhatsApp chat instead (see
+  `COMPANY.whatsapp` / `WHATSAPP_LINK` in `src/lib/constants.ts`), and
+  "Other Products (By Request)" opens the Request a Quote modal. **Areca
+  Nut** remains the one real, verified product record in Postgres — it's
+  the one product named in the content brief's hero copy — it just isn't
+  rendered as its own page anymore.
+- **Request a Quote is a global modal, not a page** (the old
+  `/request-a-quote` route was removed). Every "Request a Quote" CTA
+  sitewide opens `src/components/quote/QuoteModal.tsx` via
+  `QuoteModalProvider`/`useQuoteModal` (`src/components/quote/
+  QuoteModalContext.tsx`) — use `<QuoteModalTrigger>` (button-styled) or
+  `<QuoteModalTextTrigger>` (plain-text-styled) in place of a
+  `<Button href="/request-a-quote">`. The modal is deliberately **not**
+  dismissible by clicking the backdrop or pressing Escape — only its close
+  button closes it, per explicit product decision.
+- A floating WhatsApp button (`src/components/layout/WhatsAppButton.tsx`)
+  and scroll-to-top button (`src/components/layout/ScrollToTopButton.tsx`)
+  are fixed at the bottom-right of every page, mounted once in
+  `src/app/[locale]/layout.tsx`.
+- **There is no separate FAQ page either** (the old `/faq` route was
+  removed) — the homepage's FAQ section (`src/components/sections/
+  FaqPreviewSection.tsx`) is the only FAQ content, anchored at `#faq`; the
+  "FAQ" nav link points to `/#faq`. Its `FAQPage` JSON-LD (`faqJsonLd` in
+  `src/lib/structured-data.ts`) now renders from `src/app/[locale]/
+  page.tsx` instead of a dedicated page.
+- Every unverified product-level field (grade, MOQ, HS code, packaging,
+  loading port, etc.) is rendered as a visible `[VERIFY: ...]` placeholder
+  — see `prisma/seed.ts`. `COMPANY` in `src/lib/constants.ts` (WhatsApp,
+  email, office address, business hours) is now fully verified — no
+  `[VERIFY: ...]` placeholders remain there.
 - Before launch, run through the verification checklist in
   `assets/CONTENT.md` section 54 with the business owner and replace every
-  `[VERIFY: ...]` placeholder with confirmed information.
+  remaining `[VERIFY: ...]` placeholder with confirmed information.
 
 ## Security notes
 
@@ -145,10 +221,10 @@ architecture (`src/i18n/`, `middleware` → `proxy.ts`) already supports it.
 No platform-specific code — this runs as a standard Next.js server
 (`next start`) or on Vercel with zero extra config. Whichever you pick,
 Postgres needs to be reachable from wherever the app runs, and the DB-backed
-routes (`/`, `/products`, `/products/[slug]`, `/blog`, `/blog/[slug]`,
-`/sitemap.xml`) are intentionally rendered per-request (`export const
-dynamic = "force-dynamic"`) rather than at build time, since build
-environments won't have a live database connection.
+routes (`/`, `/blog`, `/blog/[slug]`, `/sitemap.xml`) are intentionally
+rendered per-request (`export const dynamic = "force-dynamic"`) rather than
+at build time, since build environments won't have a live database
+connection.
 
 ## What's next (deferred)
 

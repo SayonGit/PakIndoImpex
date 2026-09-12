@@ -53,24 +53,3 @@ export function faqJsonLd(items: { question: string; answer: string }[]) {
     })),
   };
 }
-
-export function productJsonLd(product: {
-  name: string;
-  description: string;
-  slug: string;
-  category: string;
-}) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.description,
-    category: product.category,
-    url: new URL(`/products/${product.slug}`, SITE_URL).toString(),
-    brand: {
-      "@type": "Organization",
-      name: COMPANY.legalName,
-    },
-    // No offers/price/rating included — none of that is verified yet.
-  };
-}

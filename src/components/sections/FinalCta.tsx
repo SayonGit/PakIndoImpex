@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { QuoteModalTrigger } from "@/components/quote/QuoteModalTrigger";
 import { DotGrid } from "@/components/ui/DotGrid";
 
 export function FinalCta() {
@@ -18,16 +19,16 @@ export function FinalCta() {
         aria-hidden
       />
       <Container className="relative text-center">
-        <h2 className="mx-auto max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
+        <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
           {t("heading")}
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg">
           {t("copy")}
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-4">
-          <Button href="/request-a-quote" variant="white" size="lg" showArrow>
+          <QuoteModalTrigger variant="white" size="lg" showArrow>
             {t("primaryCta")}
-          </Button>
+          </QuoteModalTrigger>
           <Button href="/contact" variant="outlineLight" size="lg">
             {t("secondaryCta")}
           </Button>

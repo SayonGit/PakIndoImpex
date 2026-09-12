@@ -67,10 +67,6 @@ export default async function ContactPage({
                 </div>
               </div>
             ))}
-            <p className="pt-2 text-xs text-ink-500 italic">
-              Details marked [VERIFY] are placeholders pending confirmation from the business
-              owner and will be updated once verified.
-            </p>
           </div>
 
           <div className="shadow-soft rounded-2xl border border-ink-100 bg-white p-6 sm:p-10">

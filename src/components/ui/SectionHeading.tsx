@@ -25,18 +25,13 @@ export function SectionHeading({
       )}
     >
       {eyebrow && (
-        <p
-          className={clsx(
-            "mb-4 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-bold tracking-[0.2em] uppercase",
-            tone === "dark" ? "bg-primary-50 text-primary-700" : "glass text-gold-300"
-          )}
-        >
+        <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-gold-400 px-3.5 py-1.5 text-xs font-bold tracking-[0.2em] text-black uppercase">
           {eyebrow}
         </p>
       )}
       <h2
         className={clsx(
-          "text-3xl leading-[1.1] font-extrabold tracking-tight sm:text-4xl lg:text-[2.75rem]",
+          "text-3xl leading-[1.1] font-semibold tracking-tight sm:text-4xl lg:text-[2.75rem]",
           tone === "dark" ? "text-ink-950" : "text-white"
         )}
       >

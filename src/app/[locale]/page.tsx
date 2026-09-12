@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
+import { faqJsonLd } from "@/lib/structured-data";
+import type { FaqItem } from "@/components/ui/FaqAccordion";
 import { Hero } from "@/components/sections/Hero";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { AboutPreview } from "@/components/sections/AboutPreview";
+import { AchievementCounter } from "@/components/sections/AchievementCounter";
 import { ProductsPreview } from "@/components/sections/ProductsPreview";
 import { ProcessSection } from "@/components/sections/ProcessSection";
-import { BuyerBenefits } from "@/components/sections/BuyerBenefits";
-import { MarketsSection } from "@/components/sections/MarketsSection";
 import { FaqPreviewSection } from "@/components/sections/FaqPreviewSection";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { BrandScroller } from "@/components/ui/BrandScroller";
@@ -40,15 +41,21 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const t = await getTranslations("home.faq");
+  const faqItems = t.raw("items") as FaqItem[];
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqItems)) }}
+      />
       <Hero />
       <TrustSection />
       <AboutPreview />
+      <AchievementCounter />
       <ProductsPreview />
       <ProcessSection />
-      <BuyerBenefits />
-      <MarketsSection />
       <FaqPreviewSection />
       <FinalCta />
       <BrandScroller />

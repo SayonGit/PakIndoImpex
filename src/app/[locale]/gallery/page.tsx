@@ -48,11 +48,7 @@ export default async function GalleryPage({
         </Container>
       </section>
 
-      <InlineCta
-        message="Have a specific product or requirement in mind?"
-        ctaLabel="Request a Quote"
-        ctaHref="/request-a-quote"
-      />
+      <InlineCta message="Have a specific product or requirement in mind?" ctaLabel="Request a Quote" />
     </>
   );
 }

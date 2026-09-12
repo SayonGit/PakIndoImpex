@@ -21,12 +21,20 @@
  * - https://pixabay.com/photos/areca-nut-fruit-red-ripe-plant-4671646/
  * - https://pixabay.com/illustrations/palm-leaf-leaves-green-tropical-4284589/
  * - https://commons.wikimedia.org/wiki/File:Areca_nut_cross-section,_2026-06-12.jpg
+ * - https://commons.wikimedia.org/wiki/File:Betel_nut_%26_powder2.jpg (public domain)
  */
 export const ARECA_NUT_PHOTOS = [
   "https://cdn.pixabay.com/photo/2019/03/04/08/48/areca-nut-4033593_1280.jpg",
   "https://cdn.pixabay.com/photo/2014/01/11/07/10/areca-nut-241989_1280.jpg",
   "https://cdn.pixabay.com/photo/2019/12/04/04/24/areca-nut-4671646_1280.jpg",
 ] as const;
+
+/** Whole, dried areca nuts still in their fibrous husk — as harvested/dried, not cut or roasted. */
+export const ARECA_NUT_WHOLE_PHOTO = ARECA_NUT_PHOTOS[0];
+
+/** Roasted whole nuts plus chopped roasted pieces, as typically sold for chewing/export. Public domain (PD-self), no attribution required. */
+export const ARECA_NUT_ROASTED_PHOTO =
+  "https://upload.wikimedia.org/wikipedia/commons/f/f5/Betel_nut_%26_powder2.jpg";
 
 /** Cut/halved areca nut showing the marbled cross-section — CC BY-SA 3.0 SG, attribution required (see ARECA_NUT_SPLIT_CREDIT). */
 export const ARECA_NUT_SPLIT_PHOTO =

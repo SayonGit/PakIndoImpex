@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { NAV_LINKS } from "@/lib/constants";
-import { Button } from "@/components/ui/Button";
+import { QuoteModalTrigger } from "@/components/quote/QuoteModalTrigger";
 import { CountryLanguageSwitcher } from "./CountryLanguageSwitcher";
 import { MobileNav } from "./MobileNav";
 
@@ -40,9 +40,9 @@ export function Header() {
           <div className="hidden lg:block">
             <CountryLanguageSwitcher />
           </div>
-          <Button href="/request-a-quote" size="md" className="hidden sm:inline-flex">
+          <QuoteModalTrigger size="md" className="hidden sm:inline-flex">
             {t("requestQuote")}
-          </Button>
+          </QuoteModalTrigger>
           <MobileNav />
         </div>
       </div>

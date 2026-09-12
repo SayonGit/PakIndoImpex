@@ -7,7 +7,7 @@ export default function LocaleNotFound() {
     <section className="flex min-h-[60vh] items-center py-20">
       <Container className="max-w-xl text-center">
         <Compass className="mx-auto size-12 text-primary-600" aria-hidden />
-        <h1 className="mt-6 text-3xl font-extrabold tracking-tight text-ink-950 sm:text-4xl">
+        <h1 className="mt-6 text-3xl font-semibold tracking-tight text-ink-950 sm:text-4xl">
           Page Not Found
         </h1>
         <p className="mt-4 text-base leading-relaxed text-ink-600">
@@ -18,7 +18,7 @@ export default function LocaleNotFound() {
           <Button href="/" variant="primary">
             Back to Homepage
           </Button>
-          <Button href="/products" variant="outline">
+          <Button href="/#products" variant="outline">
             View Products
           </Button>
           <Button href="/contact" variant="outline">

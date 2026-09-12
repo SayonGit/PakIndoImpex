@@ -12,7 +12,8 @@
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "translate": "tsx scripts/translate-messages.ts"
   },
   "dependencies": {
     "@prisma/client": "6.19.3",
@@ -27,6 +28,7 @@
     "zod": "^4.6.1"
   },
   "devDependencies": {
+    "@google/genai": "^2.22.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

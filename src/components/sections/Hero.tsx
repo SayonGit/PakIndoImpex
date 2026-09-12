@@ -7,6 +7,7 @@ import { Sparkle, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { QuoteModalTrigger } from "@/components/quote/QuoteModalTrigger";
 import { ARECA_NUT_PHOTOS, ARECA_NUT_SPLIT_PHOTO, PALM_LEAF_PHOTO } from "@/data/stock-imagery";
 
 type Slide = {
@@ -17,7 +18,7 @@ type Slide = {
   secondaryCta: string;
 };
 
-const SECONDARY_HREFS = ["/products", "/about", "/#how-we-work"];
+const SECONDARY_HREFS = ["/#products", "/about", "/#how-we-work"];
 const AUTOPLAY_MS = 7000;
 
 type Nut = {
@@ -147,7 +148,7 @@ export function Hero() {
           aria-label={`${index + 1} of ${slides.length}`}
         >
           <div
-            className="animate-fade-up mb-6 inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-2 text-xs font-bold tracking-[0.2em] text-primary-700 uppercase"
+            className="animate-fade-up mb-6 inline-flex items-center gap-2 rounded-full bg-gold-400 px-4 py-2 text-xs font-bold tracking-[0.2em] text-black uppercase"
             style={{ animationDelay: "0ms" }}
           >
             <Sparkle className="size-3.5" aria-hidden />
@@ -155,7 +156,7 @@ export function Hero() {
           </div>
 
           <h1
-            className="animate-fade-up max-w-2xl text-4xl leading-[1.05] font-extrabold tracking-tight text-primary-800 sm:text-5xl lg:text-6xl"
+            className="animate-fade-up max-w-2xl text-4xl leading-[1.05] font-semibold tracking-tight text-primary-800 sm:text-5xl lg:text-6xl"
             style={{ animationDelay: "90ms" }}
           >
             {slide.title}
@@ -172,10 +173,10 @@ export function Hero() {
             className="animate-fade-up mt-9 flex flex-wrap gap-4"
             style={{ animationDelay: "270ms" }}
           >
-            <Button href="/request-a-quote" variant="primary" size="lg" showArrow>
+            <QuoteModalTrigger variant="primary" size="lg" showArrow>
               {slide.primaryCta}
-            </Button>
-            <Button href={SECONDARY_HREFS[index] ?? "/products"} variant="outline" size="lg">
+            </QuoteModalTrigger>
+            <Button href={SECONDARY_HREFS[index] ?? "/#products"} variant="outline" size="lg">
               {slide.secondaryCta}
             </Button>
           </div>
