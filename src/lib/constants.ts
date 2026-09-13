@@ -3,7 +3,10 @@
  * verified public information or an explicit [VERIFY: ...] placeholder per
  * assets/CONTENT.md section 2.1 — never fill these in with invented data.
  */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+// `||` (not `??`) deliberately treats an empty string the same as unset —
+// a blank NEXT_PUBLIC_SITE_URL env var (e.g. added but never filled in on a
+// hosting dashboard) previously reached `new URL("")` and crashed the build.
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export const COMPANY = {
   legalName: "PT. Pakindo Impex Perkasa",
