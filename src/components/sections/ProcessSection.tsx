@@ -42,7 +42,6 @@ export function ProcessSection() {
 
   return (
     <section id="how-we-work" className="relative scroll-mt-24 overflow-hidden bg-white py-20 sm:py-28">
-      <div className="glow-mesh" />
       <Container className="relative">
         <SectionHeading eyebrow={t("eyebrow")} title={t("heading")} description={t("description")} />
         <div className="mt-14 grid items-stretch gap-6 lg:grid-cols-3">

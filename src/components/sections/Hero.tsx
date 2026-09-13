@@ -8,7 +8,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { QuoteModalTrigger } from "@/components/quote/QuoteModalTrigger";
-import { ARECA_NUT_PHOTOS, ARECA_NUT_SPLIT_PHOTO, PALM_LEAF_PHOTO } from "@/data/stock-imagery";
+import { PALM_LEAF_PHOTO } from "@/data/stock-imagery";
 
 type Slide = {
   eyebrow: string;
@@ -18,67 +18,23 @@ type Slide = {
   secondaryCta: string;
 };
 
-const SECONDARY_HREFS = ["/#products", "/about", "/#how-we-work"];
-const AUTOPLAY_MS = 7000;
-
-type Nut = {
-  photo: string;
-  size: number;
-  top: string;
-  left?: string;
-  right?: string;
-  duration: number;
-  delay: number;
-  hideOnMobile?: boolean;
-};
-
-const NUTS: Nut[] = [
-  { photo: ARECA_NUT_PHOTOS[0], size: 96, top: "8%", left: "3%", duration: 6, delay: 0 },
-  { photo: ARECA_NUT_SPLIT_PHOTO, size: 64, top: "68%", left: "9%", duration: 7.5, delay: 0.6, hideOnMobile: true },
-  { photo: ARECA_NUT_PHOTOS[2], size: 84, top: "14%", right: "6%", duration: 6.8, delay: 0.3 },
-  { photo: ARECA_NUT_SPLIT_PHOTO, size: 56, top: "78%", right: "17%", duration: 5.6, delay: 0.9, hideOnMobile: true },
-  { photo: ARECA_NUT_PHOTOS[1], size: 70, top: "42%", right: "2%", duration: 7, delay: 1.2, hideOnMobile: true },
-  { photo: ARECA_NUT_PHOTOS[2], size: 60, top: "4%", left: "38%", duration: 6.2, delay: 1.5, hideOnMobile: true },
+// Real facility photos, one per slide.
+const HERO_PHOTOS = [
+  "/images/hero/hero-slide-bg-1.webp",
+  "/images/hero/hero-slide-bg-2.webp",
+  "/images/hero/hero-slide-bg-3.webp",
 ];
 
-function FloatingNuts({ reducedMotion }: { reducedMotion: boolean }) {
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      {NUTS.map((nut, i) => (
-        <div
-          key={i}
-          className={clsx(
-            "shadow-soft-lg absolute rounded-full ring-4 ring-white",
-            nut.hideOnMobile && "hidden sm:block",
-            !reducedMotion && "animate-float"
-          )}
-          style={{
-            width: nut.size,
-            height: nut.size,
-            top: nut.top,
-            left: nut.left,
-            right: nut.right,
-            animationDuration: `${nut.duration}s`,
-            animationDelay: `${nut.delay}s`,
-          }}
-        >
-          <Image
-            src={nut.photo}
-            alt=""
-            fill
-            sizes="120px"
-            className="rounded-full object-cover"
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
+const SECONDARY_HREFS = ["/#products", "/about", "/#how-we-work"];
+const AUTOPLAY_MS = 7000;
 
 export function Hero() {
   const t = useTranslations("home.hero");
   const slides = t.raw("slides") as Slide[];
   const [index, setIndex] = useState(0);
+  // Bumped on every slide change so the active image's zoom (keyed off this)
+  // restarts each time — including repeat visits to the same slide.
+  const [cycle, setCycle] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(
     () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -88,6 +44,7 @@ export function Hero() {
   const goTo = useCallback(
     (next: number) => {
       setIndex(((next % slides.length) + slides.length) % slides.length);
+      setCycle((c) => c + 1);
     },
     [slides.length]
   );
@@ -103,6 +60,7 @@ export function Hero() {
     if (paused || reducedMotion) return;
     timerRef.current = setInterval(() => {
       setIndex((current) => (current + 1) % slides.length);
+      setCycle((c) => c + 1);
     }, AUTOPLAY_MS);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -113,129 +71,103 @@ export function Hero() {
 
   return (
     <section
-      className="relative flex h-dvh min-h-[640px] items-center overflow-hidden bg-paper"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      className="relative flex h-dvh min-h-[640px] items-center overflow-hidden"
       aria-roledescription="carousel"
       aria-label="Highlights"
     >
-      <div className="stripe-texture pointer-events-none absolute inset-0" />
+      {/* Background layer — the "far" plane: slow, heavy crossfade + zoom. */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        {HERO_PHOTOS.map((photo, i) => (
+          <div
+            key={photo}
+            className={clsx(
+              "absolute inset-0 overflow-hidden transition-all duration-[2600ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]",
+              i === index ? "scale-100 opacity-100" : "scale-[1.08] opacity-0"
+            )}
+          >
+            <Image
+              key={i === index ? `${photo}-${cycle}` : photo}
+              src={photo}
+              alt=""
+              fill
+              priority={i === 0}
+              sizes="100vw"
+              className={clsx("object-cover", i === index && !reducedMotion && "animate-kenburns")}
+            />
+          </div>
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-950/65 via-ink-950/35 to-ink-950/5" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/45 via-transparent to-ink-950/5" />
+      </div>
 
+      {/* Mid layer — leaf accents drift at their own pace, independent of both. */}
       <Image
         src={PALM_LEAF_PHOTO}
         alt=""
         width={420}
         height={420}
-        className="pointer-events-none absolute -top-16 -right-10 h-48 w-48 rotate-[175deg] mix-blend-multiply sm:h-64 sm:w-64"
+        className="pointer-events-none absolute -top-16 -right-10 hidden h-48 w-48 rotate-[175deg] transition-transform duration-700 ease-spring sm:block sm:h-64 sm:w-64"
       />
       <Image
         src={PALM_LEAF_PHOTO}
         alt=""
         width={420}
         height={420}
-        className="pointer-events-none absolute -bottom-10 -left-12 h-48 w-48 rotate-[95deg] -scale-x-100 mix-blend-multiply sm:h-64 sm:w-64"
+        className="pointer-events-none absolute -bottom-10 -left-12 hidden h-48 w-48 rotate-[95deg] -scale-x-100 transition-transform duration-700 ease-spring sm:block sm:h-64 sm:w-64"
       />
 
-      <FloatingNuts reducedMotion={reducedMotion} />
-
-      <Container className="relative grid items-center gap-14 py-24 lg:grid-cols-[1.05fr_0.95fr]">
+      {/* Foreground layer — the "near" plane: text moves quickly, settling
+          well before the background finishes, for a layered depth cue. */}
+      <Container className="relative py-24">
         <div
           key={index}
           role="group"
           aria-roledescription="slide"
           aria-label={`${index + 1} of ${slides.length}`}
+          className="max-w-2xl"
         >
           <div
-            className="animate-fade-up mb-6 inline-flex items-center gap-2 rounded-full bg-gold-400 px-4 py-2 text-xs font-bold tracking-[0.2em] text-black uppercase"
-            style={{ animationDelay: "0ms" }}
+            className="animate-slide-fade mb-6 inline-flex items-center gap-2 rounded-full bg-gold-400 px-4 py-2 text-xs font-bold tracking-[0.2em] text-black uppercase"
+            style={{ animationDuration: "1s", animationDelay: "0ms" }}
           >
             <Sparkle className="size-3.5" aria-hidden />
             {slide.eyebrow}
           </div>
 
           <h1
-            className="animate-fade-up max-w-2xl text-4xl leading-[1.05] font-semibold tracking-tight text-primary-800 sm:text-5xl lg:text-6xl"
-            style={{ animationDelay: "90ms" }}
+            className="animate-slide-fade max-w-2xl text-4xl leading-[1.05] font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl"
+            style={{ animationDuration: "1.1s", animationDelay: "150ms" }}
           >
             {slide.title}
           </h1>
 
           <p
-            className="animate-fade-up mt-6 max-w-xl text-base leading-relaxed text-ink-600 sm:text-lg"
-            style={{ animationDelay: "180ms" }}
+            className="animate-slide-fade mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg"
+            style={{ animationDuration: "1.1s", animationDelay: "300ms" }}
           >
             {slide.copy}
           </p>
 
           <div
-            className="animate-fade-up mt-9 flex flex-wrap gap-4"
-            style={{ animationDelay: "270ms" }}
+            className="animate-slide-fade mt-9 flex flex-wrap gap-4"
+            style={{ animationDuration: "1.1s", animationDelay: "450ms" }}
           >
             <QuoteModalTrigger variant="primary" size="lg" showArrow>
               {slide.primaryCta}
             </QuoteModalTrigger>
-            <Button href={SECONDARY_HREFS[index] ?? "/#products"} variant="outline" size="lg">
+            <Button href={SECONDARY_HREFS[index] ?? "/#products"} variant="outlineLight" size="lg">
               {slide.secondaryCta}
             </Button>
           </div>
 
           <div
-            className="animate-fade-up mt-10 flex items-center gap-4 lg:hidden"
-            style={{ animationDelay: "340ms" }}
+            className="animate-fade-in mt-10 flex items-center gap-4"
+            style={{ animationDuration: "1s", animationDelay: "600ms" }}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocus={() => setPaused(true)}
+            onBlur={() => setPaused(false)}
           >
-            <SlideControls
-              index={index}
-              count={slides.length}
-              paused={paused}
-              onPrev={() => goTo(index - 1)}
-              onNext={() => goTo(index + 1)}
-              onSelect={goTo}
-            />
-          </div>
-        </div>
-
-        <div className="hidden lg:block">
-          <div className="relative mx-auto aspect-square w-full max-w-lg">
-            <span
-              className="font-heading pointer-events-none absolute inset-0 flex items-center justify-center text-[16rem] leading-none font-black text-primary-100 select-none"
-              aria-hidden
-            >
-              {index + 1}
-            </span>
-
-            <span className="absolute inset-[6%] rounded-full bg-primary-50" aria-hidden />
-
-            <div
-              key={index}
-              className="animate-fade-in animate-float absolute inset-[9%] overflow-hidden rounded-full shadow-soft-lg ring-8 ring-white"
-              style={{ animationDuration: "8s" }}
-            >
-              <Image
-                src={index === 0 ? ARECA_NUT_SPLIT_PHOTO : ARECA_NUT_PHOTOS[index % ARECA_NUT_PHOTOS.length]}
-                alt=""
-                fill
-                sizes="(min-width: 1024px) 36vw, 60vw"
-                priority={index === 0}
-                className="object-cover"
-              />
-            </div>
-
-            {index === 0 && (
-              <div className="glass-on-light shadow-soft-lg absolute bottom-2 left-0 flex items-center gap-3 rounded-2xl px-4 py-3">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-100 text-primary-700">
-                  <Sparkle className="size-4" aria-hidden />
-                </span>
-                <div className="leading-tight">
-                  <p className="text-[11px] font-bold tracking-wide text-ink-500 uppercase">Origin</p>
-                  <p className="text-sm font-semibold text-ink-900">Indonesia</p>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="mt-10 flex justify-center">
             <SlideControls
               index={index}
               count={slides.length}
@@ -272,7 +204,7 @@ function SlideControls({
         type="button"
         onClick={onPrev}
         aria-label="Previous slide"
-        className="glass-on-light flex size-9 shrink-0 items-center justify-center rounded-full text-ink-900 transition-transform duration-300 ease-spring hover:scale-105"
+        className="glass flex size-9 shrink-0 items-center justify-center rounded-full text-white transition-transform duration-300 ease-spring hover:scale-105"
       >
         <ChevronLeft className="size-4 rtl-flip" aria-hidden />
       </button>
@@ -285,14 +217,14 @@ function SlideControls({
             aria-label={`Go to slide ${i + 1}`}
             aria-current={i === index}
             className={clsx(
-              "relative h-1.5 overflow-hidden rounded-full bg-ink-900/15 transition-all duration-300 ease-spring",
-              i === index ? "w-8" : "w-1.5 hover:bg-ink-900/30"
+              "relative h-1.5 overflow-hidden rounded-full bg-white/25 transition-all duration-300 ease-spring",
+              i === index ? "w-8" : "w-1.5 hover:bg-white/40"
             )}
           >
             {i === index && (
               <span
                 key={index}
-                className="absolute inset-y-0 left-0 w-full origin-left rounded-full bg-primary-600"
+                className="absolute inset-y-0 left-0 w-full origin-left rounded-full bg-gold-400"
                 style={{
                   animationName: "slide-progress",
                   animationDuration: `${AUTOPLAY_MS}ms`,
@@ -309,7 +241,7 @@ function SlideControls({
         type="button"
         onClick={onNext}
         aria-label="Next slide"
-        className="glass-on-light flex size-9 shrink-0 items-center justify-center rounded-full text-ink-900 transition-transform duration-300 ease-spring hover:scale-105"
+        className="glass flex size-9 shrink-0 items-center justify-center rounded-full text-white transition-transform duration-300 ease-spring hover:scale-105"
       >
         <ChevronRight className="size-4 rtl-flip" aria-hidden />
       </button>

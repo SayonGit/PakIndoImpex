@@ -17,7 +17,7 @@
   "cta": {
     "requestQuote": "Minta Penawaran",
     "getExportPricing": "Dapatkan Harga Ekspor",
-    "sendRequirements": "Kirim Kebutuhan Anda",
+    "sendRequirements": "Kirimkan Kebutuhan Anda",
     "contactUs": "Hubungi Kami",
     "askAboutProduct": "Minta Harga Terbaik",
     "learnMore": "Pelajari Tentang Kami",
@@ -37,7 +37,7 @@
     "linksHeading": "Perusahaan",
     "contactHeading": "Kontak",
     "newsletterHeading": "Pembaruan Perdagangan",
-    "newsletterCopy": "Pembaruan berkala seputar produk dan panduan ekspor. Tanpa spam.",
+    "newsletterCopy": "Pembaruan berkala tentang produk dan panduan ekspor. Bebas spam.",
     "newsletterPlaceholder": "Alamat email Anda",
     "newsletterSubmit": "Berlangganan",
     "newsletterSuccess": "Terima kasih — Anda telah berlangganan.",
@@ -53,30 +53,30 @@
         {
           "eyebrow": "Mitra Ekspor & Impor Indonesia",
           "title": "Eksportir Pinang Terpercaya Anda",
-          "copy": "PT. Pakindo Impex Perkasa menghubungkan pembeli internasional dengan produk-produk Indonesia melalui sumber daya yang andal, koordinasi kualitas, dokumentasi ekspor, dan dukungan logistik.",
+          "copy": "PT. Pakindo Impex Perkasa menghubungkan pembeli internasional dengan produk-produk Indonesia melalui pengadaan yang andal, koordinasi kualitas, dokumentasi ekspor, dan dukungan logistik.",
           "primaryCta": "Minta Penawaran",
           "secondaryCta": "Jelajahi Produk"
         },
         {
           "eyebrow": "Pengadaan • Kualitas • Logistik",
-          "title": "Produk Indonesia. Pasar Global. Perdagangan Handal.",
-          "copy": "Dari koordinasi pemasok hingga dokumentasi ekspor dan dukungan pengiriman, kami membantu pembeli internasional dalam menavigasi pengadaan dari Indonesia dengan jelas dan percaya diri.",
+          "title": "Produk Indonesia. Pasar Global. Perdagangan Andal.",
+          "copy": "Dari koordinasi pemasok hingga dokumentasi ekspor dan dukungan pengiriman, kami membantu pembeli internasional menavigasi pengadaan dari Indonesia dengan kejelasan dan keyakinan.",
           "primaryCta": "Minta Penawaran",
-          "secondaryCta": "Tentang Kami"
+          "secondaryCta": "Kenali Kami"
         },
         {
           "eyebrow": "Proses Ekspor yang Lebih Jelas",
           "title": "Dari Permintaan hingga Pengiriman Internasional",
           "copy": "Proses enam langkah terstruktur membawa kebutuhan Anda mulai dari permintaan awal melalui konfirmasi spesifikasi, dokumentasi, dan pemuatan — hingga pengiriman.",
           "primaryCta": "Minta Penawaran",
-          "secondaryCta": "Lihat Cara Kerja Kami"
+          "secondaryCta": "Lihat Cara Kami Bekerja"
         }
       ]
     },
     "trust": {
       "eyebrow": "Mengapa Pakindo",
       "heading": "Perdagangan yang Andal Dimulai dari Mitra yang Tepat",
-      "copy": "Pengadaan internasional membutuhkan lebih dari sekadar menemukan produk. Pembeli memerlukan spesifikasi yang jelas, koordinasi yang andal, pengemasan yang sesuai, dokumentasi yang akurat, dan dukungan pengiriman. Pakindo Impex Perkasa bekerja untuk membuat proses menjadi lebih jelas dan efisien dari permintaan hingga pengiriman.",
+      "copy": "Pengadaan internasional membutuhkan lebih dari sekadar menemukan produk. Pembeli memerlukan spesifikasi yang jelas, koordinasi yang andal, kemasan yang sesuai, dokumentasi yang akurat, and dukungan pengiriman. PT. Pakindo Impex Perkasa bekerja untuk membuat proses menjadi lebih jelas dan efisien dari permintaan hingga pengiriman.",
       "cards": [
         {
           "title": "Pengadaan Produk yang Andal",
@@ -88,18 +88,18 @@
         },
         {
           "title": "Harga Ekspor Kompetitif",
-          "copy": "Kami bekerja sama dengan pemasok dan pembeli untuk menyusun penawaran harga yang mencerminkan spesifikasi produk, kuantitas, pengemasan, dan persyaratan pengiriman."
+          "copy": "Kami bekerja sama dengan pemasok dan pembeli untuk menyusun penawaran harga yang mencerminkan spesifikasi produk, kuantitas, kemasan, and persyaratan pengiriman."
         },
         {
           "title": "Dukungan Ekspor & Logistik",
-          "copy": "Kami mengkoordinasikan dokumentasi, pengemasan, pemuatan, dan persyaratan terkait pengiriman di seluruh proses ekspor."
+          "copy": "Kami mengkoordinasikan dokumentasi, pengemasan, pemuatan, dan persyaratan terkait pengiriman di sepanjang proses ekspor."
         }
       ]
     },
     "about": {
       "eyebrow": "Tentang Pakindo",
       "heading": "Mitra Indonesia Anda untuk Perdagangan Global",
-      "copy1": "PT. Pakindo Impex Perkasa adalah perusahaan perdagangan dan ekspor/impor Indonesia yang berfokus menghubungkan produk-produk Indonesia dengan pembeli internasional.",
+      "copy1": "PT. Pakindo Impex Perkasa adalah perusahaan perdagangan dan ekspor/impor Indonesia yang berfokus menghubungkan produk Indonesia dengan pembeli internasional.",
       "copy2": "Peran kami dapat mencakup pengadaan, koordinasi pemasok, manajemen spesifikasi produk, koordinasi kualitas, pengemasan, dokumentasi ekspor, dan dukungan logistik.",
       "tags": [
         "Pengadaan",
@@ -115,7 +115,7 @@
       "items": [
         {
           "value": 8,
-          "label": "Target Pasar"
+          "label": "Pasar Tujuan"
         },
         {
           "value": 3,
@@ -132,13 +132,13 @@
       ]
     },
     "products": {
-      "eyebrow": "Yang Kami Sediakan",
+      "eyebrow": "Apa yang Kami Sediakan",
       "heading": "Produk Ekspor Kami",
-      "intro": "Jelajahi kategori produk kami dan hubungi kami dengan spesifikasi, kuantitas, pengemasan, dan tujuan yang Anda butuhkan.",
+      "intro": "Jelajahi kategori produk kami dan hubungi kami dengan spesifikasi, kuantitas, kemasan, dan tujuan yang Anda butuhkan.",
       "featured": {
         "badge": "Produk Terlaris",
         "name": "Pinang Belah (Split Betel Nut)",
-        "description": "Produk ekspor utama kami dengan kualitas konsisten, pasokan stabil, dan permintaan tinggi di pasar internasional. Cocok untuk pasar India, Bangladesh, Pakistan, dan Timur Tengah.",
+        "description": "Produk ekspor utama kami dengan kualitas konsisten, pasokan stabil, dan permintaan yang kuat di pasar internasional. Cocok untuk pasar India, Bangladesh, Pakistan, dan Timur Tengah.",
         "features": [
           "90 hingga 95% (Kualitas Terbaik)",
           "80 hingga 85%",
@@ -147,8 +147,8 @@
         ]
       },
       "whole": {
-        "name": "Pinang Bulat (Whole Betel Nut)",
-        "description": "Stok terbatas dengan permintaan tinggi di pasar ekspor. Cocok untuk pembeli pinang bulat alami. Kualitas tidak dapat dijamin tanpa pemotongan, namun kami memastikan seleksi yang cermat dan grading yang jujur.",
+        "name": "Pinang Utuh (Whole Betel Nut)",
+        "description": "Stok terbatas dengan permintaan tinggi di pasar ekspor. Cocok untuk pembeli pinang utuh alami. Kualitas tidak dapat dijamin tanpa pemotongan, tetapi kami memastikan pemilihan yang cermat dan grading yang jujur.",
         "features": [
           "Kering Alami",
           "Kualitas Pilihan",
@@ -157,7 +157,7 @@
       },
       "roasted": {
         "name": "Pinang Panggang (Roasted Areca Nut)",
-        "description": "Pinang panggang yang disiapkan sesuai ukuran dan tingkat pemanggangan yang ditentukan pembeli untuk perdagangan produk kunyah.",
+        "description": "Pinang panggang yang disiapkan sesuai ukuran dan tingkat pemanggangan yang ditentukan pembeli untuk perdagangan produk sirih pinang.",
         "features": [
           "Pesanan Khusus",
           "Kualitas Ekspor",
@@ -166,20 +166,25 @@
       },
       "customSourcing": {
         "title": "Produk Lainnya (Berdasarkan Permintaan)",
-        "copy": "Butuh bentuk spesifik — pinang iris, pinang rebus (B1), atau pinang muda kering? Kirimkan kebutuhan Anda dan kami akan meninjau kemungkinan pengadaannya.",
-        "cta": "Minta Penawaran"
+        "copy": "Butuh bentuk tertentu? Kirimkan kebutuhan Anda dan kami akan meninjau kemungkinan pengadaannya.",
+        "items": [
+          "Pinang Iris (Sliced Areca Nut)",
+          "Pinang Rebus (Boiled Areca Nut / B1)",
+          "Pinang Muda Kering (Dried Young Areca Nuts)"
+        ],
+        "cta": "Hubungi Cepat untuk Penawaran Ekspor Terbaik"
       },
       "comingSoon": "Detail kategori segera hadir"
     },
     "process": {
-      "eyebrow": "Cara Kerja Kami",
+      "eyebrow": "Cara Kami Bekerja",
       "heading": "Proses Ekspor yang Lebih Jelas",
-      "description": "Setiap pesanan internasional dapat memiliki persyaratan yang berbeda. Bagikan detail pasar dan pengiriman Anda, dan kami dapat meninjau pendekatan pengadaan serta ekspor yang sesuai.",
+      "description": "Setiap pesanan internasional dapat memiliki persyaratan yang berbeda. Bagikan detail pasar dan pengiriman Anda, dan kami dapat meninjau pendekatan pengadaan dan ekspor yang sesuai.",
       "steps": [
         {
           "number": "01",
-          "title": "Kirim Kebutuhan Anda",
-          "copy": "Beri tahu kami produk, spesifikasi, kuantitas, pengemasan, tujuan, dan persyaratan lainnya."
+          "title": "Kirimkan Kebutuhan Anda",
+          "copy": "Beritahu kami produk, spesifikasi, kuantitas, kemasan, tujuan, dan persyaratan lainnya."
         },
         {
           "number": "02",
@@ -189,12 +194,12 @@
         {
           "number": "03",
           "title": "Konfirmasi Spesifikasi",
-          "copy": "Kualitas produk, grade, pengemasan, kuantitas, dan detail komersial lainnya dikonfirmasi."
+          "copy": "Kualitas produk, grade, kemasan, kuantitas, dan detail komersial lainnya dikonfirmasi."
         },
         {
           "number": "04",
           "title": "Persiapan Produk",
-          "copy": "Persiapan produk dan pengemasan dikoordinasikan sesuai dengan persyaratan yang disepakati."
+          "copy": "Persiapan dan pengemasan produk dikoordinasikan sesuai dengan persyaratan yang disepakati."
         },
         {
           "number": "05",
@@ -204,7 +209,7 @@
         {
           "number": "06",
           "title": "Pengiriman Internasional",
-          "copy": "Pengiriman dilanjutkan sesuai dengan kesepakatan perdagangan dan logistik yang telah disetujui."
+          "copy": "Pengiriman dilanjutkan sesuai dengan pengaturan perdagangan dan logistik yang disepakati."
         }
       ]
     },
@@ -213,42 +218,74 @@
       "heading": "Pertanyaan yang Sering Diajukan",
       "items": [
         {
-          "question": "Produk apa saja yang dapat saya sourcing dari Indonesia?",
-          "answer": "Kami menawarkan produk pilihan Indonesia dan dapat meninjau persyaratan pengadaan untuk produk tertentu. Silakan hubungi kami dengan menyertakan nama produk, spesifikasi, kuantitas, dan tujuan."
+          "question": "Berapa harga terbaru Anda untuk pinang?",
+          "answer": "Harga kami bervariasi tergantung pada grade, kuantitas, dan kondisi pasar saat ini. Untuk harga yang akurat dan terbaru, silakan hubungi kami langsung via WhatsApp. Kami akan merespons dengan cepat dengan detail berdasarkan kebutuhan spesifik Anda.",
+          "children": [
+            {
+              "question": "Apakah harga Anda sudah termasuk pengiriman ke negara saya?",
+              "answer": "Ya, kami dapat menyediakan penawaran harga berdasarkan Incoterms pilihan Anda: FOB (dari pelabuhan Indonesia), CFR/CNF (termasuk pengiriman ke pelabuhan tujuan Anda), atau CIF (termasuk pengiriman dan asuransi). Beritahu kami pelabuhan tujuan Anda, dan kami akan menghitung penawaran terbaik untuk Anda."
+            }
+          ]
         },
         {
-          "question": "Bisakah saya meminta spesifikasi produk tertentu?",
-          "answer": "Ya, pembeli dapat mengajukan spesifikasi yang mereka butuhkan untuk ditinjau. Ketersediaan dan kelayakan pengadaan harus dikonfirmasi untuk setiap permintaan."
+          "question": "Ketentuan pembayaran apa saja yang Anda terima?",
+          "answer": "Kami menerima metode pembayaran internasional yang aman: T/T (Telegraphic Transfer) dan L/C (Letter of Credit). Ketentuan yang fleksibel dapat didiskusikan tergantung pada volume pesanan dan kerja sama.",
+          "children": [
+            {
+              "question": "Jenis L/C apa yang Anda terima?",
+              "answer": "Kami menerima Irrevocable Letter of Credit at Sight, yang diterbitkan oleh bank internasional terkemuka."
+            },
+            {
+              "question": "Bagaimana cara kerja pembayaran T/T?",
+              "answer": "Ketentuan standar kami: 50% pembayaran di muka setelah Proforma Invoice, dan 50% pelunasan setelah pemuatan kontainer (sebelum pengiriman). Kami menyediakan dokumentasi pemuatan dan bukti sebelum pembayaran akhir."
+            }
+          ]
         },
         {
-          "question": "Informasi apa saja yang Anda butuhkan untuk penawaran harga?",
-          "answer": "Sertakan nama produk, kuantitas, kualitas/spesifikasi, pengemasan, pelabuhan tujuan, Incoterm pilihan, dan persyaratan tambahan apa pun."
+          "question": "Bagaimana Anda memastikan keamanan transaksi?",
+          "answer": "Kami memprioritaskan transparansi dan hubungan bisnis jangka panjang melalui aktivitas gudang dan pengolahan nyata, pengalaman ekspor ke berbagai negara, serta dokumentasi dan komunikasi yang jelas. Pembeli dipersilakan untuk berkunjung atau meminta verifikasi video kapan saja.",
+          "children": [
+            {
+              "question": "Bagaimana jika saya tidak bisa berkunjung ke Indonesia?",
+              "answer": "Tidak masalah. Banyak pembeli kami bekerja sama dengan kami dari jarak jauh. Kami dapat menyediakan foto dan video produk, panggilan video langsung dari gudang, serta spesifikasi terperinci sebelum pengiriman untuk memastikan Anda menerima produk yang sesuai dengan spesifikasi yang disepakati."
+            }
+          ]
         },
         {
-          "question": "Bisakah Anda mengatur sampel?",
-          "answer": "Ketersediaan sampel tergantung pada produk dan persyaratan pesanan. Hubungi kami dengan permintaan produk Anda untuk mengkonfirmasi opsi yang tersedia."
+          "question": "Produk apa saja yang Anda ekspor?",
+          "answer": "Produk ekspor utama kami: Pinang (Areca Nut) — Belah, Utuh, Panggang. Kami juga dapat menyediakan produk pertanian Indonesia lainnya berdasarkan permintaan Anda.",
+          "children": [
+            {
+              "question": "Bisakah Anda memasok produk berdasarkan kebutuhan pasar saya?",
+              "answer": "Ya. Kami memahami bahwa setiap pasar memiliki standar kualitas dan grading yang berbeda. Kami dapat menyesuaikan spesifikasi berdasarkan persyaratan negara Anda."
+            }
+          ]
         },
         {
-          "question": "Opsi pengemasan apa saja yang tersedia?",
-          "answer": "Pengemasan tergantung pada produk dan persyaratan pembeli. Hubungi kami dengan format pengemasan pilihan Anda agar dapat ditinjau."
+          "question": "Berapa Kode HS untuk pinang?",
+          "answer": "Pinang umumnya diklasifikasikan di bawah Kode HS 0802. Silakan konfirmasikan dengan otoritas pabean lokal Anda untuk peraturan spesifik.",
+          "children": [
+            {
+              "question": "Bagaimana dengan bea masuk di negara saya?",
+              "answer": "Bea masuk bergantung pada peraturan kepabeanan negara Anda. Kami menyarankan untuk memeriksanya dengan broker atau otoritas pabean lokal Anda."
+            }
+          ]
         },
         {
-          "question": "Bisakah Anda memberikan kuotasi FOB, CFR, atau CIF?",
-          "answer": "Ketentuan pengiriman bergantung pada pengiriman dan tujuan. Harap sertakan pelabuhan tujuan Anda dan Incoterm pilihan dalam permintaan Anda."
-        },
-        {
-          "question": "Berapa jumlah pesanan minimum (MOQ)?",
-          "answer": "MOQ bergantung pada produk, grade, pengemasan, dan persyaratan pengiriman. Silakan minta penawaran harga untuk produk spesifik yang Anda butuhkan."
-        },
-        {
-          "question": "Negara tujuan mana saja yang Anda layani?",
-          "answer": "Kami meninjau permintaan dari pembeli internasional di seluruh dunia. Bagikan negara tujuan dan persyaratan Anda agar kami dapat mengkonfirmasi kelayakannya."
+          "question": "Bisakah saya menjadi agen atau mitra Anda di negara saya?",
+          "answer": "Ya, kami terbuka untuk kerja sama dan kemitraan jangka panjang. Mari diskusikan pasar dan potensi kolaborasi Anda via WhatsApp.",
+          "children": [
+            {
+              "question": "Bisakah Anda memasok langsung ke pelanggan saya?",
+              "answer": "Ya, kami dapat mendukung bisnis Anda dengan memasok secara langsung. Silakan bagikan kebutuhan Anda dan kami akan mengatur semestinya."
+            }
+          ]
         }
       ]
     },
     "finalCta": {
       "heading": "Siap Melakukan Pengadaan dari Indonesia?",
-      "copy": "Kirimkan kepada kami persyaratan produk, kuantitas, spesifikasi kualitas, preferensi pengemasan, dan tujuan Anda. Tim kami dapat meninjau permintaan Anda dan merespons dengan langkah selanjutnya.",
+      "copy": "Kirimkan kebutuhan produk, kuantitas, spesifikasi kualitas, preferensi kemasan, dan tujuan Anda. Tim kami dapat meninjau permintaan Anda dan merespons dengan langkah selanjutnya.",
       "primaryCta": "Minta Penawaran",
       "secondaryCta": "Hubungi Kami"
     }

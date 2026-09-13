@@ -10,14 +10,29 @@ export const COMPANY = {
   shortName: "Pakindo Impex Perkasa",
   country: "Indonesia",
   whatsapp: "+6281310188888",
+  /** Same number as WhatsApp — the only verified contact number on file. */
+  phone: "+6281310188888",
   email: "info@pakindoimpex.com",
   address: "PT. Pakindo Impex Perkasa, Desa Tangkit, RT. 001, Sungai Gelam, Kabupaten Muaro Jambi, Jambi, Indonesia",
+  /** Condensed for tight spaces (e.g. the top utility bar) — full address elsewhere. */
+  shortAddress: "Jambi, Indonesia",
   businessHours: "Monday – Friday: 8:00 AM – 4:00 PM / Saturday: 8:00 AM – 1:00 PM / Sunday: Closed",
 } as const;
 
 /** wa.me deep link for the floating WhatsApp button. */
 export const WHATSAPP_LINK =
   "https://wa.me/+6281310188888/?text=Hello,%20I%20visited%20your%20website%20and%20would%20like%20more%20information%20about%20your%20products.";
+
+/**
+ * Social profile links — NOT yet verified. Hrefs stay "#" (inert) until the
+ * business owner supplies real URLs; never fabricate a handle or profile.
+ */
+export const SOCIAL_LINKS = [
+  { key: "facebook", href: "#", label: "Facebook" },
+  { key: "instagram", href: "#", label: "Instagram" },
+  { key: "twitter", href: "#", label: "Twitter / X" },
+  { key: "youtube", href: "#", label: "YouTube" },
+] as const;
 
 export const NAV_LINKS = [
   { key: "home", href: "/" },

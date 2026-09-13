@@ -6,6 +6,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing, rtlLocales, type Locale } from "@/i18n/routing";
 import { SITE_URL, COMPANY } from "@/lib/constants";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
+import { TopBar } from "@/components/layout/TopBar";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyMobileCTA } from "@/components/layout/StickyMobileCTA";
@@ -86,6 +87,7 @@ export default async function LocaleLayout({
             >
               Skip to content
             </a>
+            <TopBar />
             <Header />
             <main id="main-content" className="flex-1">
               {children}

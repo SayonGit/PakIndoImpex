@@ -40,15 +40,7 @@ export function ProductCard({
           className="object-cover transition-transform duration-500 ease-spring group-hover:scale-105"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent" />
-        <div className="glass pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-spring group-hover:opacity-100">
-          <Leaf
-            className="size-10 scale-75 text-white transition-transform duration-500 ease-spring group-hover:scale-100"
-            aria-hidden
-          />
-        </div>
-        <span className="glass absolute bottom-3 left-3 flex size-9 items-center justify-center rounded-full text-gold-300 transition-transform duration-500 ease-spring group-hover:scale-110">
-          <Leaf className="size-4" aria-hidden />
-        </span>
+        <div className="glass pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-spring group-hover:opacity-100" />
       </div>
       <div className="flex flex-1 flex-col p-6">
         <h3 className={`${titleClassName} font-bold leading-tight text-ink-950`}>{name}</h3>
@@ -113,15 +105,7 @@ export function FeaturedProductCard({
           className="object-cover transition-transform duration-500 ease-spring group-hover:scale-105"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
-        <div className="glass pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-spring group-hover:opacity-100">
-          <Leaf
-            className="size-16 scale-75 text-white transition-transform duration-500 ease-spring group-hover:scale-100"
-            aria-hidden
-          />
-        </div>
-        <span className="glass absolute bottom-4 left-4 flex size-11 items-center justify-center rounded-full text-gold-300 transition-transform duration-500 ease-spring group-hover:scale-110">
-          <Leaf className="size-5" aria-hidden />
-        </span>
+        <div className="glass pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-spring group-hover:opacity-100" />
       </div>
       <div className="flex flex-1 flex-col p-6 sm:p-8">
         <span className="inline-flex w-fit rounded-full bg-gold-400 px-3.5 py-1.5 text-xs font-bold tracking-[0.2em] text-black uppercase">

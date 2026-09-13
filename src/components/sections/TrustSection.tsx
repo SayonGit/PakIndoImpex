@@ -27,7 +27,12 @@ export function TrustSection() {
       />
 
       <Container className="relative">
-        <SectionHeading eyebrow={t("eyebrow")} title={t("heading")} description={t("copy")} />
+        <SectionHeading
+          eyebrow={t("eyebrow")}
+          title={t("heading")}
+          description={t("copy")}
+          maxWidthClassName="max-w-3xl"
+        />
         <div className="mt-12 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((card, index) => (
             <Reveal key={card.title} delay={index * 80} className="h-full">

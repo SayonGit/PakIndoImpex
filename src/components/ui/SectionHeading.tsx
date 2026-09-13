@@ -7,6 +7,7 @@ export function SectionHeading({
   description,
   align = "left",
   tone = "dark",
+  maxWidthClassName = "max-w-2xl",
   className,
 }: {
   eyebrow?: string;
@@ -14,12 +15,14 @@ export function SectionHeading({
   description?: ReactNode;
   align?: "left" | "center";
   tone?: "dark" | "light";
+  /** Overrides the default max-width utility (e.g. "max-w-3xl"). */
+  maxWidthClassName?: string;
   className?: string;
 }) {
   return (
     <div
       className={clsx(
-        "max-w-2xl",
+        maxWidthClassName,
         align === "center" && "mx-auto text-center",
         className
       )}

@@ -108,11 +108,33 @@
 
   --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-fade-in: fade-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-fade: slide-fade 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-float: float 7s ease-in-out infinite;
   --animate-marquee: marquee 32s linear infinite;
   --animate-kenburns: kenburns 9s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  --animate-kenburns-loop: kenburns-loop 10s ease-in-out infinite alternate;
   --animate-slide-progress: slide-progress 7s linear forwards;
   --animate-whatsapp-pulse: whatsapp-pulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes kenburns-loop {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes slide-fade {
+    from {
+      opacity: 0;
+      transform: translateX(-32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 
   @keyframes whatsapp-pulse {
     0% {

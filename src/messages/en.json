@@ -153,8 +153,9 @@
       },
       "customSourcing": {
         "title": "Other Products (By Request)",
-        "copy": "Need a specific form — sliced areca nut, boiled areca nut (B1), or dried young areca nuts? Send us your requirements and we'll review sourcing possibilities.",
-        "cta": "Request a Quote"
+        "copy": "Need a specific form? Send us your requirements and we'll review sourcing possibilities.",
+        "items": ["Sliced Areca Nut", "Boiled Areca Nut (B1)", "Dried Young Areca Nuts"],
+        "cta": "Quick Connect for Best Export Offers"
       },
       "comingSoon": "Category details coming soon"
     },
@@ -200,36 +201,68 @@
       "heading": "Frequently Asked Questions",
       "items": [
         {
-          "question": "What products can I source from Indonesia?",
-          "answer": "We offer selected Indonesian products and can review sourcing requirements for specific products. Please contact us with the product name, specification, quantity, and destination."
+          "question": "What is your latest price for areca nut?",
+          "answer": "Our prices vary depending on grade, quantity, and current market conditions. For accurate and latest pricing, please contact us directly via WhatsApp. We will respond quickly with details based on your specific requirements.",
+          "children": [
+            {
+              "question": "Does your price include shipping to my country?",
+              "answer": "Yes, we can provide pricing based on your preferred Incoterms: FOB (from Indonesian port), CFR/CNF (includes shipping to your destination port), or CIF (includes shipping and insurance). Let us know your destination port, and we will calculate the best offer for you."
+            }
+          ]
         },
         {
-          "question": "Can I request a specific product specification?",
-          "answer": "Yes, buyers can submit their required specifications for review. Availability and sourcing feasibility should be confirmed for each inquiry."
+          "question": "What payment terms do you accept?",
+          "answer": "We accept secure international payment methods: T/T (Telegraphic Transfer) and L/C (Letter of Credit). Flexible terms can be discussed depending on order volume and cooperation.",
+          "children": [
+            {
+              "question": "What type of L/C do you accept?",
+              "answer": "We accept an Irrevocable Letter of Credit at Sight, issued by a reputable international bank."
+            },
+            {
+              "question": "How does T/T payment work?",
+              "answer": "Our standard terms: 50% advance payment after Proforma Invoice, and 50% balance after container loading (before shipment). We provide loading documentation and proof before final payment."
+            }
+          ]
         },
         {
-          "question": "What information do you need for a quotation?",
-          "answer": "Include product name, quantity, quality/specification, packaging, destination port, preferred Incoterm, and any additional requirements."
+          "question": "How do you ensure safe transactions?",
+          "answer": "We prioritize transparency and long-term business relationships through real warehouse and processing activity, export experience to multiple countries, and clear documentation and communication. Buyers are welcome to visit or request video verification anytime.",
+          "children": [
+            {
+              "question": "What if I cannot visit Indonesia?",
+              "answer": "No problem. Many of our buyers work with us remotely. We can provide product photos and videos, live video call from warehouse, and detailed specifications before shipment to ensure you receive products that match agreed specifications."
+            }
+          ]
         },
         {
-          "question": "Can you arrange samples?",
-          "answer": "Sample availability depends on the product and order requirements. Contact us with your product request to confirm the available options."
+          "question": "What products do you export?",
+          "answer": "Our main export product: Areca Nut (Betel Nut) — Split, Whole, Roasted. We can also source other Indonesian agricultural products based on your request.",
+          "children": [
+            {
+              "question": "Can you supply products based on my market needs?",
+              "answer": "Yes. We understand that each market has different quality and grading standards. We can adjust specifications based on your country requirements."
+            }
+          ]
         },
         {
-          "question": "What packaging options are available?",
-          "answer": "Packaging depends on the product and buyer requirements. Contact us with your preferred packaging format so it can be reviewed."
+          "question": "What is the HS Code for areca nut?",
+          "answer": "Areca nut is generally classified under HS Code 0802. Please confirm with your local customs authority for specific regulations.",
+          "children": [
+            {
+              "question": "What about import duties in my country?",
+              "answer": "Import duties depend on your country's customs regulations. We recommend checking with your local customs broker or authority."
+            }
+          ]
         },
         {
-          "question": "Can you quote FOB, CFR, or CIF?",
-          "answer": "Shipping terms depend on the shipment and destination. Please include your destination port and preferred Incoterm in your inquiry."
-        },
-        {
-          "question": "What is the minimum order quantity?",
-          "answer": "MOQ depends on the product, grade, packaging, and shipment requirements. Please request a quotation for the specific product you need."
-        },
-        {
-          "question": "Which destination countries do you serve?",
-          "answer": "We review inquiries from international buyers worldwide. Share your destination country and requirements so we can confirm feasibility."
+          "question": "Can I become your agent or partner in my country?",
+          "answer": "Yes, we are open to long-term cooperation and partnerships. Let's discuss your market and potential collaboration via WhatsApp.",
+          "children": [
+            {
+              "question": "Can you supply directly to my customers?",
+              "answer": "Yes, we can support your business by supplying directly. Please share your requirements and we will arrange accordingly."
+            }
+          ]
         }
       ]
     },

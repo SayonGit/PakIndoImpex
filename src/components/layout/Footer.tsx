@@ -6,7 +6,6 @@ import { COMPANY } from "@/lib/constants";
 import { QuoteModalTextTrigger } from "@/components/quote/QuoteModalTextTrigger";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { DotGrid } from "@/components/ui/DotGrid";
-import { ARECA_NUT_SPLIT_CREDIT } from "@/data/stock-imagery";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -80,19 +79,9 @@ export function Footer() {
       </div>
 
       <div className="relative border-t border-white/10">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-5 py-6 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-center sm:px-8 lg:px-10">
           <p>
             &copy; {year} {COMPANY.legalName}. {t("rights")}
-          </p>
-          <p>
-            <a
-              href={ARECA_NUT_SPLIT_CREDIT.href}
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-              className="hover:text-ink-300"
-            >
-              {ARECA_NUT_SPLIT_CREDIT.text}
-            </a>
           </p>
         </div>
       </div>

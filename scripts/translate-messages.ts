@@ -124,8 +124,16 @@ async function generateWithRetry(client: GoogleGenAI, target: Target, contents: 
         contents,
         config: {
           systemInstruction: buildSystemPrompt(target),
-          temperature: 0.2,
-          maxOutputTokens: 16000,
+          // 0 instead of a small positive value: deeply nested JSON (e.g. the
+          // chained FAQ follow-up tree) needs exact bracket-structure fidelity
+          // more than word-choice variety, and higher temperatures were
+          // measurably more prone to dropping/misplacing closing brackets.
+          temperature: 0,
+          // Bumped from 16000 — content-dense scripts (e.g. Urdu) can burn
+          // through the budget and get cut off exactly at the final closing
+          // brace, which otherwise produces a byte-for-byte-valid-looking
+          // file that's still missing one character.
+          maxOutputTokens: 24000,
           responseMimeType: "application/json",
         },
       });
@@ -152,6 +160,36 @@ async function generateWithRetry(client: GoogleGenAI, target: Target, contents: 
   throw new Error("unreachable");
 }
 
+/**
+ * Some responses (observed repeatedly for Urdu, independent of output-token
+ * budget) are cut exactly one or two closing brackets short of complete —
+ * every string and object/array up to that point is well-formed, just the
+ * outermost wrapper(s) never got their closing brace. Detect that specific,
+ * safe case (never mid-string) and heal it, rather than treating a purely
+ * cosmetic truncation as a full translation failure.
+ */
+function tryRepairTruncatedJson(raw: string): string | null {
+  let inStr = false;
+  let esc = false;
+  const stack: string[] = [];
+  for (const c of raw) {
+    if (inStr) {
+      if (esc) esc = false;
+      else if (c === "\\") esc = true;
+      else if (c === '"') inStr = false;
+      continue;
+    }
+    if (c === '"') inStr = true;
+    else if (c === "{") stack.push("}");
+    else if (c === "[") stack.push("]");
+    else if (c === "}" || c === "]") {
+      if (stack.pop() !== c) return null; // real mismatch, not just a missing tail
+    }
+  }
+  if (inStr || stack.length === 0) return null;
+  return raw + stack.reverse().join("");
+}
+
 async function translateLocale(client: GoogleGenAI, en: unknown, target: Target) {
   const response = await generateWithRetry(client, target, JSON.stringify(en));
 
@@ -165,6 +203,18 @@ async function translateLocale(client: GoogleGenAI, en: unknown, target: Target)
   try {
     parsed = JSON.parse(raw);
   } catch {
+    const repaired = tryRepairTruncatedJson(raw);
+    if (repaired) {
+      try {
+        parsed = JSON.parse(repaired);
+        console.log(`(healed a missing trailing bracket for "${target.code}") `);
+      } catch {
+        parsed = undefined;
+      }
+    }
+  }
+
+  if (parsed === undefined) {
     const dumpPath = path.join(process.cwd(), `.translate-debug-${target.code}.txt`);
     fs.writeFileSync(dumpPath, raw, "utf8");
     throw new Error(

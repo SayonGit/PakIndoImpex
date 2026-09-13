@@ -39,11 +39,23 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   };
 }
 
-export function faqJsonLd(items: { question: string; answer: string }[]) {
+type FaqTreeItem = { question: string; answer: string; children?: FaqTreeItem[] };
+
+/** schema.org's FAQPage has no concept of nested questions, so every question
+ * in the tree — parent and chained follow-ups alike — is flattened into one
+ * list for the structured data, even though the on-page UI nests them. */
+function flattenFaqItems(items: FaqTreeItem[]): { question: string; answer: string }[] {
+  return items.flatMap((item) => [
+    { question: item.question, answer: item.answer },
+    ...(item.children ? flattenFaqItems(item.children) : []),
+  ]);
+}
+
+export function faqJsonLd(items: FaqTreeItem[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
+    mainEntity: flattenFaqItems(items).map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {

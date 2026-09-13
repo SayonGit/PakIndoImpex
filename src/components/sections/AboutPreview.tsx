@@ -4,7 +4,6 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
-import { placeholderPhoto } from "@/lib/placeholder-images";
 
 export function AboutPreview() {
   const t = useTranslations("home.about");
@@ -18,15 +17,21 @@ export function AboutPreview() {
               className="absolute -inset-5 -rotate-3 rounded-[2.5rem] bg-gold-400/50"
               aria-hidden
             />
-            <div className="shadow-soft-lg relative aspect-4/3 overflow-hidden rounded-3xl bg-primary-700">
-              <Image
-                src={placeholderPhoto("about-pakindo", 900, 675)}
-                alt=""
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
+            <div className="group shadow-soft-lg relative aspect-4/3 overflow-hidden rounded-3xl bg-primary-700 transition-all duration-500 ease-spring hover:-translate-y-1.5 hover:shadow-[0_28px_56px_-20px_rgba(4,30,6,0.45)]">
+              <div className="absolute inset-0 transition-transform duration-500 ease-spring group-hover:scale-105">
+                <Image
+                  src="/images/about-us-1.webp"
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="animate-kenburns-loop motion-reduce:animate-none object-cover"
+                />
+              </div>
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent"
+                aria-hidden
               />
-              <div className="pointer-events-none absolute inset-0 bg-primary-900/30" aria-hidden />
+              <div className="glass pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-spring group-hover:opacity-100" />
               <div className="absolute inset-6 rounded-2xl border border-white/25" aria-hidden />
             </div>
           </div>
