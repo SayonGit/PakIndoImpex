@@ -34,11 +34,13 @@
   },
   "footer": {
     "tagline": "Indonesian export and import partner connecting products, suppliers, and international buyers.",
-    "linksHeading": "Company",
-    "contactHeading": "Contact",
-    "newsletterHeading": "Trade Updates",
+    "companyHeading": "Company",
+    "resourcesHeading": "Resources",
+    "contactHeading": "Contact Us",
+    "newsletterHeading": "Get Trade Updates & Export Guides in Your Inbox",
     "newsletterCopy": "Occasional updates on products and export guides. No spam.",
-    "newsletterPlaceholder": "Your email address",
+    "newsletterDisclaimer": "You can unsubscribe at any time.",
+    "newsletterPlaceholder": "Enter your email",
     "newsletterSubmit": "Subscribe",
     "newsletterSuccess": "Thank you — you're subscribed.",
     "newsletterError": "Something went wrong. Please try again.",
@@ -46,6 +48,20 @@
     "email": "Email",
     "office": "Office",
     "rights": "All rights reserved."
+  },
+  "aboutPage": {
+    "eyebrow": "Who We Are",
+    "heading": "Your Trusted Areca Nut Exporter",
+    "paragraph1": "PT. Pakindo Impex Perkasa is an Indonesian trading and export/import company focused on connecting Indonesian products with international buyers.",
+    "paragraph2": "Our approach is centered on clear communication, buyer-specific requirements, product coordination, documentation, and logistics support.",
+    "vision": {
+      "title": "Our Vision",
+      "copy": "To become a trusted Indonesian trading and export/import partner for buyers seeking reliable products and long-term business relationships."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "copy": "To make Indonesian products more accessible to international buyers through dependable sourcing, clear communication, and professional trade coordination."
+    }
   },
   "home": {
     "hero": {
@@ -266,11 +282,54 @@
         }
       ]
     },
+    "exportMarkets": {
+      "eyebrow": "Targeted Countries",
+      "heading": "Our Export Markets",
+      "highlights": [
+        "Direct exporter from Indonesia",
+        "Stable monthly supply",
+        "24/7 response via WhatsApp",
+        "Experienced in International Shipments"
+      ],
+      "whatsappCta": "Get offers via WhatsApp"
+    },
     "finalCta": {
       "heading": "Ready to Source from Indonesia?",
       "copy": "Send us your product requirements, quantity, quality specifications, packaging preferences, and destination. Our team can review your inquiry and respond with the next steps.",
       "primaryCta": "Request a Quote",
       "secondaryCta": "Contact Us"
+    },
+    "testimonials": {
+      "eyebrow": "Testimonials",
+      "heading": "What Our Buyers Say",
+      "description": "Feedback from the international buyers we work with.",
+      "items": [
+        {
+          "quote": "Clear communication and consistent quality made sourcing from Indonesia straightforward.",
+          "role": "Importer",
+          "country": "India"
+        },
+        {
+          "quote": "Our shipments have been on schedule with accurate documentation every time.",
+          "role": "Trading Partner",
+          "country": "Bangladesh"
+        },
+        {
+          "quote": "Responsive on WhatsApp and transparent about pricing and specifications.",
+          "role": "Procurement Manager",
+          "country": "Malaysia"
+        },
+        {
+          "quote": "A dependable partner for areca nut sourcing with honest grading.",
+          "role": "Buyer",
+          "country": "Pakistan"
+        },
+        {
+          "quote": "Smooth coordination from inquiry to loading, with clear updates throughout.",
+          "role": "Import Manager",
+          "country": "Singapore"
+        }
+      ]
     }
   }
 }

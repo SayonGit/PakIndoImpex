@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Browsers default <button> to cursor:default, not the pointer an <a> gets —
+   apply pointer everywhere a button (or ARIA button) is actually clickable,
+   site-wide, so no individual component has to opt in. Disabled buttons
+   already set their own `disabled:cursor-not-allowed` utility, which wins
+   here on specificity. */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+}
+
 :root {
   --color-paper: #fbfaf6;
   --color-white: #ffffff;
@@ -405,4 +417,95 @@ html.no-js .reveal {
   .whatsapp-pulse-ring {
     display: none;
   }
+}
+
+/* --- Targeted Countries map (src/components/ui/TargetedCountriesMapInner.tsx) ---
+   Leaflet renders these elements outside React's tree, so they're styled as
+   plain global CSS rather than component-scoped classes. */
+
+/* Neon glow effect on SVG geo-path borders */
+.glow-border {
+  filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.8)) drop-shadow(0 0 16px rgba(16, 185, 129, 0.35));
+  transition: all 0.3s ease;
+}
+.glow-border:hover {
+  filter: drop-shadow(0 0 14px rgba(52, 211, 153, 1)) drop-shadow(0 0 24px rgba(16, 185, 129, 0.7));
+}
+
+/* Radar pulse animation for regional hubs (emerald) */
+@keyframes hub-radar {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  80%,
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+.pulse-ring {
+  animation: hub-radar 2.2s infinite cubic-bezier(0.2, 0.6, 0.4, 1);
+}
+
+/* Radar pulse animation for the global HQ (amber/gold) */
+@keyframes hq-radar {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  80%,
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+.pulse-ring-hq {
+  animation: hq-radar 1.8s infinite cubic-bezier(0.2, 0.6, 0.4, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-ring,
+  .pulse-ring-hq {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Fix Leaflet's default div-icon styling & anchor drift during zoom */
+.leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+.radar-marker-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+/* Custom Leaflet tooltip theme */
+.leaflet-tooltip-custom {
+  background: rgba(15, 23, 42, 0.92) !important;
+  border: 1px solid rgba(52, 211, 153, 0.45) !important;
+  color: #f8fafc !important;
+  backdrop-filter: blur(12px) !important;
+  border-radius: 0.75rem !important;
+  padding: 6px 12px !important;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(16, 185, 129, 0.25) !important;
+}
+.leaflet-tooltip-custom::before {
+  border-top-color: rgba(52, 211, 153, 0.45) !important;
+}
+.leaflet-tooltip-hq {
+  border-color: rgba(251, 191, 36, 0.6) !important;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.6),
+    0 0 18px rgba(251, 191, 36, 0.35) !important;
+}
+.leaflet-tooltip-hq::before {
+  border-top-color: rgba(251, 191, 36, 0.6) !important;
 }

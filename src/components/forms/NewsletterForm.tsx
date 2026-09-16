@@ -2,7 +2,7 @@
 
 import { useId, useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Loader2, CheckCircle2 } from "lucide-react";
+import { Loader2, CheckCircle2, Mail } from "lucide-react";
 
 export function NewsletterForm() {
   const t = useTranslations("footer");
@@ -44,27 +44,30 @@ export function NewsletterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2" noValidate>
+    <form onSubmit={handleSubmit} className="flex w-full max-w-md flex-col gap-2" noValidate>
       <div className="hidden" aria-hidden="true">
         <label htmlFor={`${emailId}-website`}>Leave this field empty</label>
         <input id={`${emailId}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
-      <div className="flex flex-col gap-2 sm:flex-row">
+      <div className="flex flex-col gap-2 rounded-full bg-white/10 p-1.5 sm:flex-row sm:items-center">
         <label htmlFor={emailId} className="sr-only">
           {t("newsletterPlaceholder")}
         </label>
-        <input
-          id={emailId}
-          name="email"
-          type="email"
-          required
-          placeholder={t("newsletterPlaceholder")}
-          className="min-w-0 flex-1 rounded-full border border-white/25 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-ink-400 transition-colors focus:border-gold-300 focus:outline-none"
-        />
+        <div className="relative flex-1">
+          <Mail className="pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-white/60" aria-hidden />
+          <input
+            id={emailId}
+            name="email"
+            type="email"
+            required
+            placeholder={t("newsletterPlaceholder")}
+            className="w-full min-w-0 rounded-full bg-transparent py-2 pl-10 pr-4 text-sm text-white placeholder:text-white/60 focus:outline-none"
+          />
+        </div>
         <button
           type="submit"
           disabled={status === "loading"}
-          className="btn-sheen group inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-br from-gold-300 to-gold-500 px-5 py-2.5 text-sm font-semibold text-ink-950 shadow-[0_8px_20px_-8px_rgba(240,173,31,0.4)] transition-all duration-300 ease-spring hover:-translate-y-0.5 hover:scale-[1.02] hover:from-gold-400 hover:to-gold-600 hover:shadow-[0_16px_32px_-10px_rgba(240,173,31,0.55)] active:scale-100 disabled:pointer-events-none disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:scale-100"
+          className="btn-sheen group inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-br from-white to-gold-50 px-5 py-2.5 text-[0.8rem] font-semibold uppercase text-ink-950 shadow-sm transition-all duration-300 ease-spring hover:-translate-y-0.5 hover:scale-[1.02] hover:from-gold-50 hover:to-gold-200 hover:shadow-md active:scale-100 disabled:pointer-events-none disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:scale-100"
         >
           {status === "loading" && <Loader2 className="size-4 animate-spin" aria-hidden />}
           {t("newsletterSubmit")}

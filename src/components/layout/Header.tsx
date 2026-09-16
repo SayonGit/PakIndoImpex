@@ -40,9 +40,14 @@ export function Header() {
           <div className="hidden lg:block">
             <CountryLanguageSwitcher />
           </div>
-          <QuoteModalTrigger size="md" className="hidden sm:inline-flex">
-            {t("requestQuote")}
-          </QuoteModalTrigger>
+          {/* Wrapper (not a class on the button itself) controls visibility —
+              Button's own base classes always include `inline-flex`, which
+              beats a `hidden` passed via className below `sm` regardless of
+              breakpoint, since both are unprefixed same-specificity utilities
+              and `.inline-flex` happens to compile after `.hidden`. */}
+          <div className="hidden sm:block">
+            <QuoteModalTrigger size="md">{t("requestQuote")}</QuoteModalTrigger>
+          </div>
           <MobileNav />
         </div>
       </div>

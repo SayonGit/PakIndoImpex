@@ -30,12 +30,12 @@ export function QuoteModal() {
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
       role="dialog"
       aria-modal="true"
-      aria-label="Request a Quote"
+      aria-label="Request for Quotation"
     >
       <div className="absolute inset-0 bg-ink-950/60 backdrop-blur-sm" aria-hidden />
-      <div className="shadow-soft-lg relative flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white">
+      <div className="shadow-soft-lg relative flex max-h-[90vh] w-full max-w-xl flex-col overflow-hidden rounded-2xl bg-white">
         <div className="flex items-center justify-between border-b border-ink-100 px-6 py-4 sm:px-8">
-          <h2 className="text-lg font-bold text-ink-950">Request a Quote</h2>
+          <h2 className="text-lg font-bold text-ink-950">Request for Quotation (RFQ)</h2>
           <button
             ref={closeButtonRef}
             type="button"

@@ -98,6 +98,59 @@ export function TextAreaField({
   );
 }
 
+/** Phone number field with an attached country-calling-code select. Submits
+ * two separate form fields (`countryCodeName`, `numberName`) — combine them
+ * into one string where you handle the form submission. */
+export function PhoneField({
+  label,
+  countryCodeName,
+  numberName,
+  codes,
+  required,
+  error,
+  className,
+  defaultCode,
+  ...rest
+}: {
+  label: string;
+  countryCodeName: string;
+  numberName: string;
+  codes: readonly { dial: string; country: string }[];
+  required?: boolean;
+  error?: string;
+  className?: string;
+  defaultCode?: string;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, "name" | "id" | "className" | "type" | "required">) {
+  const id = useId();
+  return (
+    <FieldWrapper label={label} required={required} error={error} htmlFor={id} className={className}>
+      <div className="flex">
+        <select
+          name={countryCodeName}
+          aria-label={`${label} country code`}
+          defaultValue={defaultCode ?? codes[0]?.dial}
+          className="w-20 shrink-0 rounded-l-xl border border-r-0 border-ink-200 bg-white px-2 py-2.5 text-sm text-ink-900 transition-all duration-200 focus:z-10 focus:border-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-100"
+        >
+          {codes.map((c) => (
+            <option key={c.dial + c.country} value={c.dial} title={c.country}>
+              {c.dial}
+            </option>
+          ))}
+        </select>
+        <input
+          id={id}
+          name={numberName}
+          type="tel"
+          required={required}
+          aria-invalid={Boolean(error)}
+          className={clsx(fieldClasses, "min-w-0 flex-1 rounded-l-none border-l-0")}
+          {...rest}
+        />
+      </div>
+    </FieldWrapper>
+  );
+}
+
 export function SelectField({
   label,
   name,

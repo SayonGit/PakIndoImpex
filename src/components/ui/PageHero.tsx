@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { DotGrid } from "@/components/ui/DotGrid";
-import { placeholderPhoto } from "@/lib/placeholder-images";
 
 export function PageHero({
   eyebrow,
@@ -16,14 +15,14 @@ export function PageHero({
   return (
     <section className="relative overflow-hidden bg-ink-950 py-16 text-white sm:py-20">
       <Image
-        src={placeholderPhoto(`page-${title}`, 1600, 700)}
+        src="/images/breadcrumb-bg-1.webp"
         alt=""
         fill
         priority
         sizes="100vw"
         className="object-cover"
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/85 to-ink-950/55" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/90 via-ink-950/65 to-ink-950/35" />
       <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-white/[0.05]" />
       <div className="glow-mesh" />
       <Container className="relative">

@@ -10,8 +10,9 @@ import { AboutPreview } from "@/components/sections/AboutPreview";
 import { AchievementCounter } from "@/components/sections/AchievementCounter";
 import { ProductsPreview } from "@/components/sections/ProductsPreview";
 import { ProcessSection } from "@/components/sections/ProcessSection";
+import { ExportMarketsSection } from "@/components/sections/ExportMarketsSection";
 import { FaqPreviewSection } from "@/components/sections/FaqPreviewSection";
-import { FinalCta } from "@/components/sections/FinalCta";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { BrandScroller } from "@/components/ui/BrandScroller";
 
 // Renders per-request rather than at build time: ProductsPreview reads
@@ -56,9 +57,10 @@ export default async function HomePage({
       <AchievementCounter />
       <ProductsPreview />
       <ProcessSection />
+      <ExportMarketsSection />
       <FaqPreviewSection />
-      <FinalCta />
       <BrandScroller />
+      <TestimonialsSection />
     </>
   );
 }

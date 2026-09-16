@@ -42,12 +42,15 @@ const variantClasses: Record<ButtonVariant, string> = {
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  md: "px-5 py-2.5 text-sm",
-  lg: "px-6 py-3.5 text-[15px]",
+  md: "px-5 py-2.5",
+  lg: "px-6 py-3.5",
 };
 
+// text-[0.8rem] lives here (not in sizeClasses) so every Button instance
+// shares one font-size with no risk of two same-property utility classes
+// (this plus a size's own text-* class) racing for precedence.
 const baseClasses =
-  "btn-sheen group inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-semibold transition-all duration-300 ease-spring hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:scale-100 active:duration-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none disabled:hover:translate-y-0 disabled:hover:scale-100";
+  "btn-sheen group inline-flex items-center justify-center gap-2 overflow-hidden rounded-full text-[0.8rem] font-semibold uppercase transition-all duration-300 ease-spring hover:-translate-y-0.5 hover:scale-[1.02] active:translate-y-0 active:scale-100 active:duration-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none disabled:hover:translate-y-0 disabled:hover:scale-100";
 
 type CommonProps = {
   variant?: ButtonVariant;

@@ -3,8 +3,9 @@
 import { useState, type FormEvent } from "react";
 import { useLocale } from "next-intl";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
-import { TextField, TextAreaField } from "./FormField";
+import { TextField, TextAreaField, PhoneField } from "./FormField";
 import { contactMessageSchema } from "@/lib/validations";
+import { COUNTRY_CALLING_CODES } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -20,7 +21,12 @@ export function ContactForm() {
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
 
-    const parsed = contactMessageSchema.safeParse({ ...payload, locale });
+    // The country-code select and number input submit separately — combine
+    // them into the single `phone` string the schema/API expect.
+    const { phoneCountryCode, phoneNumber, ...rest } = payload;
+    const phone = String(phoneNumber ?? "").trim() ? `${phoneCountryCode} ${phoneNumber}`.trim() : "";
+
+    const parsed = contactMessageSchema.safeParse({ ...rest, phone, locale });
     if (!parsed.success) {
       const fieldErrors: Record<string, string> = {};
       for (const issue of parsed.error.issues) {
@@ -72,13 +78,53 @@ export function ContactForm() {
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <TextField label="Name" name="name" required autoComplete="name" error={errors.name} />
-        <TextField label="Email" name="email" type="email" required autoComplete="email" error={errors.email} />
-        <TextField label="Phone" name="phone" type="tel" autoComplete="tel" error={errors.phone} />
-        <TextField label="Country" name="country" autoComplete="country-name" error={errors.country} />
+        <TextField
+          label="Name"
+          name="name"
+          required
+          autoComplete="name"
+          placeholder="Your name"
+          error={errors.name}
+        />
+        <TextField
+          label="Email"
+          name="email"
+          type="email"
+          required
+          autoComplete="email"
+          placeholder="your@email.com"
+          error={errors.email}
+        />
+        <PhoneField
+          label="Phone"
+          countryCodeName="phoneCountryCode"
+          numberName="phoneNumber"
+          codes={COUNTRY_CALLING_CODES}
+          autoComplete="tel"
+          placeholder="8xx xxxx xxxx"
+          error={errors.phone}
+        />
+        <TextField
+          label="Country"
+          name="country"
+          autoComplete="country-name"
+          placeholder="e.g. India, Pakistan, Bangladesh"
+          error={errors.country}
+        />
       </div>
-      <TextField label="Subject" name="subject" error={errors.subject} />
-      <TextAreaField label="Message" name="message" required error={errors.message} />
+      <TextField
+        label="Subject"
+        name="subject"
+        placeholder="What is this about?"
+        error={errors.subject}
+      />
+      <TextAreaField
+        label="Message"
+        name="message"
+        required
+        placeholder="Tell us about your inquiry..."
+        error={errors.message}
+      />
 
       {status === "error" && Object.keys(errors).length === 0 && (
         <div className="flex items-center gap-3 rounded-xl border border-secondary-200 bg-secondary-50 p-4 text-sm text-secondary-700">

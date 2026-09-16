@@ -794,39 +794,39 @@ the company actually provides.
 
 # 22. Request a Quote Page
 
+Rendered as a global modal (QuoteModal), not a standalone page — see the
+Request a Quote CTA anywhere on the site.
+
 H1:
 
-`Request a Quote`
+`Request for Quotation (RFQ)`
 
 Intro:
 
-> Tell us what you need and we will review your inquiry.
+> Fill in the form below and our team will respond via email to discuss
+> pricing, specifications, and shipment terms.
 
-Form fields:
+Form fields (single flat form, no section grouping):
 
-### Buyer Information
+-   Full Name (required)
+-   Company (optional)
+-   Email (required)
+-   Phone / WhatsApp (optional)
+-   Destination Country (required)
+-   Approx. Quantity / Month (optional dropdown: Trial order (less than
+    1 x 20'), 1 x 20' FCL, 1 x 40' FCL, More than 1 FCL)
+-   Inquiry Details (required, free text — placeholder guides the buyer to
+    include product type, expected grade, packing, Incoterm, and preferred
+    loading port)
 
--   Name
--   Company
--   Email
--   WhatsApp / Phone
--   Country
+Consent line (below the fields, not a form field):
 
-### Product Requirements
-
--   Product
--   Quantity
--   Quality / Grade
--   Size / Specification
--   Packaging
--   Destination Port
--   Preferred Incoterm
--   Target Delivery Date
--   Additional Requirements
+> By submitting this form, you agree to be contacted by Pakindo Impex
+> Perkasa regarding your inquiry and related commercial follow-up.
 
 Submit button:
 
-`Request a Quote`
+`Send Inquiry`
 
 Success message:
 

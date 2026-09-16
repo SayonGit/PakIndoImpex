@@ -3,9 +3,9 @@
 import { useState, type FormEvent } from "react";
 import { useLocale } from "next-intl";
 import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
-import { TextField, TextAreaField, SelectField } from "./FormField";
+import { TextField, TextAreaField, SelectField, PhoneField } from "./FormField";
 import { quoteRequestSchema } from "@/lib/validations";
-import { INCOTERMS } from "@/lib/constants";
+import { QUANTITY_ESTIMATES, COUNTRY_CALLING_CODES, COMPANY } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -21,7 +21,12 @@ export function QuoteForm({ defaultProduct }: { defaultProduct?: string }) {
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
 
-    const parsed = quoteRequestSchema.safeParse({ ...payload, locale });
+    // The country-code select and number input submit separately — combine
+    // them into the single `phone` string the schema/API expect.
+    const { phoneCountryCode, phoneNumber, ...rest } = payload;
+    const phone = String(phoneNumber ?? "").trim() ? `${phoneCountryCode} ${phoneNumber}`.trim() : "";
+
+    const parsed = quoteRequestSchema.safeParse({ ...rest, phone, locale });
     if (!parsed.success) {
       const fieldErrors: Record<string, string> = {};
       for (const issue of parsed.error.issues) {
@@ -66,73 +71,81 @@ export function QuoteForm({ defaultProduct }: { defaultProduct?: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-10">
+    <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div className="hidden" aria-hidden="true">
         <label htmlFor="quote-website">Leave this field empty</label>
         <input id="quote-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <fieldset>
-        <legend className="text-lg font-bold text-ink-950">Buyer Information</legend>
-        <div className="mt-5 grid gap-5 sm:grid-cols-2">
-          <TextField label="Name" name="name" required autoComplete="name" error={errors.name} />
-          <TextField label="Company" name="company" autoComplete="organization" error={errors.company} />
-          <TextField
-            label="Email"
-            name="email"
-            type="email"
-            required
-            autoComplete="email"
-            error={errors.email}
-          />
-          <TextField
-            label="WhatsApp / Phone"
-            name="phone"
-            type="tel"
-            required
-            autoComplete="tel"
-            error={errors.phone}
-          />
-          <TextField label="Country" name="country" required autoComplete="country-name" error={errors.country} />
-        </div>
-      </fieldset>
+      <p className="text-sm leading-relaxed text-ink-600">
+        Fill in the form below and our team will respond via email to discuss pricing, specifications,
+        and shipment terms.
+      </p>
 
-      <fieldset>
-        <legend className="text-lg font-bold text-ink-950">Product Requirements</legend>
-        <div className="mt-5 grid gap-5 sm:grid-cols-2">
-          <TextField
-            label="Product"
-            name="product"
-            required
-            defaultValue={defaultProduct}
-            placeholder="e.g. Areca Nut"
-            error={errors.product}
-          />
-          <TextField label="Quantity" name="quantity" required placeholder="e.g. 1 x 20ft container" error={errors.quantity} />
-          <TextField label="Quality / Grade" name="quality" error={errors.quality} />
-          <TextField label="Size / Specification" name="specification" error={errors.specification} />
-          <TextField label="Packaging" name="packaging" error={errors.packaging} />
-          <TextField label="Destination Port" name="destinationPort" error={errors.destinationPort} />
-          <SelectField
-            label="Preferred Incoterm"
-            name="incoterm"
-            options={[...INCOTERMS, "Not sure yet"]}
-            error={errors.incoterm}
-          />
-          <TextField
-            label="Target Delivery Date"
-            name="targetDeliveryDate"
-            placeholder="e.g. Within 60 days"
-            error={errors.targetDeliveryDate}
-          />
-          <TextAreaField
-            label="Additional Requirements"
-            name="additionalRequirements"
-            className="sm:col-span-2"
-            error={errors.additionalRequirements}
-          />
-        </div>
-      </fieldset>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <TextField
+          label="Full Name"
+          name="name"
+          required
+          autoComplete="name"
+          placeholder="Your name"
+          error={errors.name}
+        />
+        <TextField
+          label="Company"
+          name="company"
+          autoComplete="organization"
+          placeholder="Company name (optional)"
+          error={errors.company}
+        />
+        <TextField
+          label="Email"
+          name="email"
+          type="email"
+          required
+          autoComplete="email"
+          placeholder="your@email.com"
+          error={errors.email}
+        />
+        <PhoneField
+          label="Phone / WhatsApp"
+          countryCodeName="phoneCountryCode"
+          numberName="phoneNumber"
+          codes={COUNTRY_CALLING_CODES}
+          autoComplete="tel"
+          placeholder="8xx xxxx xxxx"
+          error={errors.phone}
+        />
+        <TextField
+          label="Destination Country"
+          name="destinationCountry"
+          required
+          autoComplete="country-name"
+          placeholder="e.g. India, Pakistan, Bangladesh"
+          error={errors.destinationCountry}
+        />
+        <SelectField
+          label="Approx. Quantity / Month"
+          name="quantityEstimate"
+          options={[...QUANTITY_ESTIMATES]}
+          placeholder="Select estimate"
+          error={errors.quantityEstimate}
+        />
+        <TextAreaField
+          label="Inquiry Details"
+          name="inquiryDetails"
+          required
+          className="sm:col-span-2"
+          placeholder="Please include product type (whole/split/sliced), expected grade, packing, Incoterms (FOB/CIF), and preferred loading port."
+          defaultValue={defaultProduct ? `Product: ${defaultProduct}\n` : undefined}
+          error={errors.inquiryDetails}
+        />
+      </div>
+
+      <p className="text-xs leading-relaxed text-ink-500">
+        By submitting this form, you agree to be contacted by {COMPANY.shortName} regarding your
+        inquiry and related commercial follow-up.
+      </p>
 
       {status === "error" && Object.keys(errors).length === 0 && (
         <div className="flex items-center gap-3 rounded-xl border border-secondary-200 bg-secondary-50 p-4 text-sm text-secondary-700">
@@ -141,9 +154,9 @@ export function QuoteForm({ defaultProduct }: { defaultProduct?: string }) {
         </div>
       )}
 
-      <Button type="submit" variant="primary" size="lg" disabled={status === "loading"}>
+      <Button type="submit" variant="primary" size="lg" className="w-full" disabled={status === "loading"}>
         {status === "loading" && <Loader2 className="size-4 animate-spin" aria-hidden />}
-        Request a Quote
+        Send Inquiry
       </Button>
     </form>
   );

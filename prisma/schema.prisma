@@ -71,24 +71,21 @@ enum InquiryStatus {
 
 /// Submissions from the Request a Quote page (primary site conversion).
 model QuoteRequest {
-  id                      String        @id @default(cuid())
-  name                    String
-  company                 String?
-  email                   String
-  phone                   String
-  country                 String
-  product                 String
-  quantity                String
-  quality                 String?
-  specification           String?
-  packaging               String?
-  destinationPort         String?
-  incoterm                String?
-  targetDeliveryDate      String?
-  additionalRequirements  String?
-  locale                  String        @default("en")
-  status                  InquiryStatus @default(NEW)
-  createdAt               DateTime      @default(now())
+  id                  String        @id @default(cuid())
+  name                String
+  company             String?
+  email               String
+  phone               String?
+  destinationCountry  String
+  /// Container-based volume estimate (e.g. "1 x 20' FCL") — free text so the
+  /// dropdown's option labels can change without a migration.
+  quantityEstimate    String?
+  /// Free-text buyer inquiry — product type, grade, packing, Incoterm,
+  /// loading port, etc. Replaces the earlier set of separate granular fields.
+  inquiryDetails      String
+  locale              String        @default("en")
+  status              InquiryStatus @default(NEW)
+  createdAt           DateTime      @default(now())
 
   @@index([status, createdAt])
 }

@@ -9,6 +9,8 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { EnglishContentNotice } from "@/components/ui/EnglishContentNotice";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { ExportMarketsSection } from "@/components/sections/ExportMarketsSection";
+import { DotGrid } from "@/components/ui/DotGrid";
 
 const CONTACT_ITEMS = [
   { icon: MessageCircle, label: "WhatsApp", value: COMPANY.whatsapp },
@@ -50,30 +52,66 @@ export default async function ContactPage({
       <Breadcrumbs items={[{ name: "Contact", path: "/contact" }]} />
       <EnglishContentNotice />
 
-      <section className="py-16 sm:py-24">
-        <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="space-y-4">
-            {CONTACT_ITEMS.map((item) => (
-              <div
-                key={item.label}
-                className="shadow-soft flex items-start gap-4 rounded-2xl border border-ink-100 bg-white p-5 transition-all duration-300 ease-spring hover:-translate-y-0.5 hover:shadow-soft-lg"
-              >
-                <item.icon className="mt-0.5 size-5 shrink-0 text-primary-700" aria-hidden />
-                <div>
-                  <p className="text-xs font-bold tracking-wide text-ink-500 uppercase">
-                    {item.label}
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-ink-900">{item.value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+      <section className="relative overflow-hidden py-16 sm:py-24">
+        <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
+        <div
+          className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-primary-200/30 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-gold-300/30 blur-3xl"
+          aria-hidden
+        />
 
-          <div className="shadow-soft rounded-2xl border border-ink-100 bg-white p-6 sm:p-10">
-            <ContactForm />
+        <Container className="relative">
+          <div className="grid overflow-hidden rounded-3xl border border-ink-100 shadow-[0_35px_70px_-20px_rgba(16,24,18,0.35)] lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 p-8 text-white sm:p-10">
+              <div
+                className="pointer-events-none absolute -top-16 -right-16 h-64 w-64 rounded-full bg-gold-400/25 blur-3xl"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-gold-500/15 blur-3xl"
+                aria-hidden
+              />
+
+              <h2 className="relative text-2xl font-bold">Contact Information</h2>
+              <div className="relative mt-8 space-y-6">
+                {CONTACT_ITEMS.map((item) => (
+                  <div key={item.label} className="flex items-start gap-4">
+                    <item.icon className="mt-0.5 size-5 shrink-0 text-gold-300" aria-hidden />
+                    <div>
+                      <p className="text-xs font-bold tracking-wide text-gold-300 uppercase">
+                        {item.label}
+                      </p>
+                      {item.label === "Business Hours" ? (
+                        <ul className="mt-1 space-y-1.5">
+                          {item.value.split(" / ").map((line) => (
+                            <li key={line} className="text-sm font-semibold text-white">
+                              {line}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="mt-1 text-sm font-semibold text-white">{item.value}</p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white p-6 sm:p-10">
+              <h2 className="text-2xl font-bold text-ink-950">Send us a message</h2>
+              <div className="mt-6">
+                <ContactForm />
+              </div>
+            </div>
           </div>
         </Container>
       </section>
+
+      <ExportMarketsSection />
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -8,11 +9,29 @@ import { NAV_LINKS } from "@/lib/constants";
 import { QuoteModalTrigger } from "@/components/quote/QuoteModalTrigger";
 import { CountryLanguageSwitcher } from "./CountryLanguageSwitcher";
 
+const noopSubscribe = () => () => {};
+/** True only once mounted on the client — avoids the set-state-in-effect
+ * pattern (and its lint warning) for the classic SSR-safe "has hydrated" check. */
+function useMounted() {
+  return useSyncExternalStore(
+    noopSubscribe,
+    () => true,
+    () => false
+  );
+}
+
 export function MobileNav() {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [lastPathname, setLastPathname] = useState(pathname);
+  // Portal target: Header has backdrop-blur-md, and per spec any ancestor
+  // with a backdrop-filter becomes the containing block for `fixed`
+  // descendants — so a `fixed inset-0` drawer rendered inline here resolves
+  // against Header's own ~80px box instead of the viewport, collapsing the
+  // drawer to a sliver. Portaling to document.body escapes that ancestor.
+  // Mounted-gated because document isn't available during SSR.
+  const mounted = useMounted();
 
   // Close the drawer on navigation. Computed during render (not an effect)
   // per https://react.dev/learn/you-might-not-need-an-effect#adjusting-state-when-a-prop-changes
@@ -28,6 +47,68 @@ export function MobileNav() {
     };
   }, [open]);
 
+  const drawer = (
+    // overflow-hidden matters even though this box is exactly viewport-sized:
+    // the closed drawer panel below sits off-canvas via translate-x-full, and
+    // a `transform` on a position:fixed element still counts toward the
+    // page's scrollable width in most browsers — without clipping here, that
+    // off-screen panel silently added ~384px of real horizontal scroll space
+    // past the right edge.
+    <div
+      className={`fixed inset-0 z-[60] flex justify-end overflow-hidden transition-opacity duration-300 ease-spring ${
+        open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+      }`}
+      aria-hidden={!open}
+      inert={!open || undefined}
+    >
+      <button
+        aria-hidden
+        tabIndex={-1}
+        onClick={() => setOpen(false)}
+        className="absolute inset-0 bg-ink-950/60 backdrop-blur-sm"
+      />
+      <div
+        className={`relative flex h-full w-full max-w-sm flex-col overflow-y-auto bg-white p-6 shadow-2xl transition-transform duration-300 ease-spring ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-bold tracking-wide text-ink-900 uppercase">{t("menu")}</span>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label={t("close")}
+            className="flex size-10 items-center justify-center rounded-full border border-ink-200 text-ink-900 transition-colors duration-200 hover:border-secondary-600 hover:text-secondary-600"
+          >
+            <X className="size-5" aria-hidden />
+          </button>
+        </div>
+
+        <nav className="mt-8 flex flex-col gap-1" aria-label="Mobile">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.key}
+              href={link.href}
+              className="border-b border-ink-100 py-3.5 text-lg font-semibold text-ink-900 transition-colors hover:text-primary-700"
+            >
+              {t(link.key)}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="mt-6">
+          <CountryLanguageSwitcher />
+        </div>
+
+        <div className="mt-auto pt-8">
+          <QuoteModalTrigger variant="primary" size="lg" className="w-full" onClick={() => setOpen(false)}>
+            {t("requestQuote")}
+          </QuoteModalTrigger>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="lg:hidden">
       <button
@@ -40,61 +121,7 @@ export function MobileNav() {
         <Menu className="size-5" aria-hidden />
       </button>
 
-      <div
-        className={`fixed inset-0 z-[60] flex justify-end transition-opacity duration-300 ease-spring ${
-          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-        }`}
-        aria-hidden={!open}
-        inert={!open || undefined}
-      >
-        <button
-          aria-hidden
-          tabIndex={-1}
-          onClick={() => setOpen(false)}
-          className="absolute inset-0 bg-ink-950/60 backdrop-blur-sm"
-        />
-        <div
-          className={`relative flex h-full w-full max-w-sm flex-col overflow-y-auto bg-white p-6 shadow-2xl transition-transform duration-300 ease-spring ${
-            open ? "translate-x-0" : "translate-x-full"
-          }`}
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-bold tracking-wide text-ink-900 uppercase">
-              {t("menu")}
-            </span>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              aria-label={t("close")}
-              className="flex size-10 items-center justify-center rounded-full border border-ink-200 text-ink-900 transition-colors duration-200 hover:border-secondary-600 hover:text-secondary-600"
-            >
-              <X className="size-5" aria-hidden />
-            </button>
-          </div>
-
-          <nav className="mt-8 flex flex-col gap-1" aria-label="Mobile">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.key}
-                href={link.href}
-                className="border-b border-ink-100 py-3.5 text-lg font-semibold text-ink-900 transition-colors hover:text-primary-700"
-              >
-                {t(link.key)}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="mt-6">
-            <CountryLanguageSwitcher />
-          </div>
-
-          <div className="mt-auto pt-8">
-            <QuoteModalTrigger variant="primary" size="lg" className="w-full" onClick={() => setOpen(false)}>
-              {t("requestQuote")}
-            </QuoteModalTrigger>
-          </div>
-        </div>
-      </div>
+      {mounted && createPortal(drawer, document.body)}
     </div>
   );
 }

@@ -41,34 +41,22 @@ export async function POST(request: Request) {
     data: {
       ...data,
       company: data.company || null,
-      quality: data.quality || null,
-      specification: data.specification || null,
-      packaging: data.packaging || null,
-      destinationPort: data.destinationPort || null,
-      incoterm: data.incoterm || null,
-      targetDeliveryDate: data.targetDeliveryDate || null,
-      additionalRequirements: data.additionalRequirements || null,
+      phone: data.phone || null,
+      quantityEstimate: data.quantityEstimate || null,
       locale: data.locale || "en",
     },
   });
 
   await sendInternalNotification({
-    subject: `New quote request: ${data.product} (${data.country})`,
+    subject: `New quote request: ${data.destinationCountry}`,
     html: `<table>${renderNotificationRows({
       Name: data.name,
       Company: data.company,
       Email: data.email,
       Phone: data.phone,
-      Country: data.country,
-      Product: data.product,
-      Quantity: data.quantity,
-      Quality: data.quality,
-      Specification: data.specification,
-      Packaging: data.packaging,
-      "Destination Port": data.destinationPort,
-      Incoterm: data.incoterm,
-      "Target Delivery Date": data.targetDeliveryDate,
-      "Additional Requirements": data.additionalRequirements,
+      "Destination Country": data.destinationCountry,
+      "Approx. Quantity / Month": data.quantityEstimate,
+      "Inquiry Details": data.inquiryDetails,
     })}</table>`,
   });
 

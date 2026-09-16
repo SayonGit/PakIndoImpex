@@ -1,47 +1,48 @@
-import Image from "next/image";
+import { Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { placeholderAvatar } from "@/lib/placeholder-images";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { DotGrid } from "@/components/ui/DotGrid";
 
 const TEAM_PLACEHOLDERS = 3;
 
 /**
  * Placeholder-ready Team section. assets/CONTENT.md explicitly forbids
  * inventing employee/team information, and no real names, roles, or photos
- * exist yet — so every card here is an explicit [VERIFY: ...] placeholder,
- * never a fabricated name or title. The avatar photos are generic
- * placeholder portraits (see src/lib/placeholder-images.ts), not real
- * people. Swap in real people/photos once confirmed.
+ * exist yet — every card here is an honest "coming soon" placeholder (a
+ * generic icon, no fabricated name or stock photo standing in for a real
+ * person). Swap in real people/photos once confirmed.
  */
 export function TeamSection() {
   return (
-    <section className="bg-white pb-16 sm:pb-24">
-      <Container>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-2xl font-semibold tracking-tight text-ink-950 sm:text-3xl">
-            Meet the Team
-          </h2>
-          <p className="max-w-sm text-xs text-ink-500 italic">
-            Team profiles are pending verification and will be published once confirmed.
-          </p>
-        </div>
+    <section className="relative overflow-hidden bg-gradient-to-b from-gold-50 via-white to-white py-16 sm:py-24">
+      <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
+      <div
+        className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-primary-200/30 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-gold-300/30 blur-3xl"
+        aria-hidden
+      />
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Container className="relative">
+        <SectionHeading
+          eyebrow="Our People"
+          title="Meet the Team"
+          description="Team profiles are pending verification and will be published once confirmed."
+        />
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: TEAM_PLACEHOLDERS }).map((_, index) => (
             <div
               key={index}
-              className="shadow-soft flex flex-col items-center rounded-2xl border border-dashed border-ink-200 bg-ink-50/50 p-8 text-center transition-all duration-300 ease-spring hover:-translate-y-1 hover:shadow-soft-lg"
+              className="group shadow-soft flex flex-col items-center rounded-3xl border border-ink-100 bg-white p-8 text-center transition-all duration-300 ease-spring hover:-translate-y-1.5 hover:shadow-soft-lg"
             >
-              <div className="relative size-20 overflow-hidden rounded-full grayscale">
-                <Image
-                  src={placeholderAvatar(`team-${index}`, 160)}
-                  alt=""
-                  fill
-                  sizes="80px"
-                  className="object-cover"
-                />
-              </div>
-              <p className="mt-5 text-sm font-bold text-ink-500">[VERIFY: TEAM MEMBER NAME]</p>
-              <p className="mt-1 text-xs font-medium text-ink-400 uppercase">[VERIFY: ROLE / TITLE]</p>
+              <span className="flex size-20 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-700 text-white shadow-[0_8px_20px_-8px_rgba(18,106,22,0.4)] transition-transform duration-300 ease-spring group-hover:scale-105">
+                <Users className="size-9" strokeWidth={1.75} aria-hidden />
+              </span>
+              <p className="mt-5 text-sm font-bold text-ink-800">Profile Coming Soon</p>
+              <p className="mt-1 text-xs font-medium tracking-wide text-ink-400 uppercase">Role Pending</p>
             </div>
           ))}
         </div>

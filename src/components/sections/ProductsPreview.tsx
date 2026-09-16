@@ -99,7 +99,7 @@ export async function ProductsPreview() {
         </div>
 
         <Reveal delay={240} className="mt-6">
-          <div className="relative overflow-hidden rounded-2xl border-2 border-dashed border-primary-300 bg-gradient-to-br from-primary-50 via-primary-50 to-gold-50 p-6 transition-colors duration-300 ease-spring hover:border-primary-400 sm:p-8">
+          <div className="relative overflow-hidden rounded-2xl border-2 border-dashed border-primary-300 bg-transparent p-6 transition-colors duration-300 ease-spring hover:border-primary-400 sm:p-8">
             <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
               <div className="lg:w-72 lg:shrink-0">
                 <h3 className="text-2xl leading-tight font-bold text-ink-950 sm:text-3xl">
