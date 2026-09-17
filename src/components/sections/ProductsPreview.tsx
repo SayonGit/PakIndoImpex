@@ -40,7 +40,7 @@ export async function ProductsPreview() {
 
   return (
     <section id="products" className="relative scroll-mt-24 overflow-hidden py-20 sm:py-28">
-      <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
+      <DotGrid id="dot-grid-products" className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
       <div
         className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-primary-200/30 blur-3xl"
         aria-hidden

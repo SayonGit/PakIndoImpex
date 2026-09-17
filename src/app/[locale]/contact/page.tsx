@@ -53,7 +53,7 @@ export default async function ContactPage({
       <EnglishContentNotice />
 
       <section className="relative overflow-hidden py-16 sm:py-24">
-        <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
+        <DotGrid id="dot-grid-contact" className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
         <div
           className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-primary-200/30 blur-3xl"
           aria-hidden
@@ -111,7 +111,7 @@ export default async function ContactPage({
         </Container>
       </section>
 
-      <ExportMarketsSection />
+      <ExportMarketsSection background="white" />
     </>
   );
 }

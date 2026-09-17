@@ -18,7 +18,7 @@ export function InlineCta({
     <section className="py-16 sm:py-20">
       <Container>
         <div className="shadow-soft-lg relative flex flex-col items-start justify-between gap-6 overflow-hidden rounded-3xl bg-ink-950 px-6 py-10 text-white sm:flex-row sm:items-center sm:px-10">
-          <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-white/[0.05]" />
+          <DotGrid id="dot-grid-inline-cta" className="pointer-events-none absolute inset-0 h-full w-full text-white/[0.05]" />
           <div className="glow-mesh" />
           <p className="relative max-w-xl text-lg font-semibold sm:text-xl">{message}</p>
           {ctaHref ? (

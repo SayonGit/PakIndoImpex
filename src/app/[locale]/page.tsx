@@ -14,6 +14,7 @@ import { ExportMarketsSection } from "@/components/sections/ExportMarketsSection
 import { FaqPreviewSection } from "@/components/sections/FaqPreviewSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { BrandScroller } from "@/components/ui/BrandScroller";
+import { DotGrid } from "@/components/ui/DotGrid";
 
 // Renders per-request rather than at build time: ProductsPreview reads
 // featured products from Postgres, which isn't reachable during `next build`.
@@ -57,8 +58,28 @@ export default async function HomePage({
       <AchievementCounter />
       <ProductsPreview />
       <ProcessSection />
-      <ExportMarketsSection />
-      <FaqPreviewSection />
+      {/* Shared background so "Targeted Countries" and "Common Questions"
+          blend into one continuous section instead of each clipping its
+          own glow blobs at their edges and creating a visible seam. */}
+      <section className="relative overflow-hidden py-20 sm:py-28">
+        <DotGrid
+          id="dot-grid-export-faq"
+          className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]"
+        />
+        <div
+          className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-primary-200/30 blur-3xl"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-gold-300/30 blur-3xl"
+          aria-hidden
+        />
+
+        <ExportMarketsSection standalone={false} />
+        <div className="mt-32">
+          <FaqPreviewSection standalone={false} />
+        </div>
+      </section>
       <BrandScroller />
       <TestimonialsSection />
     </>

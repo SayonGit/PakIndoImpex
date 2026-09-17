@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Globe2, Package, Workflow, Languages as LanguagesIcon, type LucideIcon } from "lucide-react";
-import { DotGrid } from "@/components/ui/DotGrid";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -79,7 +78,6 @@ export function AchievementCounter() {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-primary-800 via-primary-700 to-primary-950 py-12 sm:py-12">
-      <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-white/[0.08]" />
       <div className="glow-mesh" />
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent"

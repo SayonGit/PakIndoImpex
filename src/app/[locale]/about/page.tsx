@@ -10,6 +10,7 @@ import { AboutIntro } from "@/components/sections/AboutIntro";
 import { AchievementCounter } from "@/components/sections/AchievementCounter";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { TeamSection } from "@/components/sections/TeamSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 
 export async function generateMetadata({
   params,
@@ -49,6 +50,7 @@ export default async function AboutPage({
 
       <ProcessSection />
       <TeamSection />
+      <TestimonialsSection />
       <BrandScroller />
     </>
   );

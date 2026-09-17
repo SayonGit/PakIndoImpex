@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { DotGrid } from "@/components/ui/DotGrid";
 
-const TEAM_PLACEHOLDERS = 3;
+const TEAM_PLACEHOLDERS = 4;
 
 /**
  * Placeholder-ready Team section. assets/CONTENT.md explicitly forbids
@@ -14,8 +14,8 @@ const TEAM_PLACEHOLDERS = 3;
  */
 export function TeamSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-gold-50 via-white to-white py-16 sm:py-24">
-      <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
+    <section className="relative overflow-hidden py-16 sm:py-24">
+      <DotGrid id="dot-grid-team" className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
       <div
         className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-primary-200/30 blur-3xl"
         aria-hidden
@@ -32,7 +32,7 @@ export function TeamSection() {
           description="Team profiles are pending verification and will be published once confirmed."
         />
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {Array.from({ length: TEAM_PLACEHOLDERS }).map((_, index) => (
             <div
               key={index}

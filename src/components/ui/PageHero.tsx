@@ -23,7 +23,7 @@ export function PageHero({
         className="object-cover"
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-950/90 via-ink-950/65 to-ink-950/35" />
-      <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-white/[0.05]" />
+      <DotGrid id="dot-grid-page-hero" className="pointer-events-none absolute inset-0 h-full w-full text-white/[0.05]" />
       <div className="glow-mesh" />
       <Container className="relative">
         {eyebrow && (

@@ -38,7 +38,6 @@ export function Footer() {
           section, which this replaces (see [locale]/page.tsx). */}
       <div className="relative z-10 mx-auto -mb-20 w-full max-w-6xl px-5 sm:-mb-24 sm:px-8 lg:px-10">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-800 via-primary-700 to-primary-950 py-14 text-white shadow-[0_30px_60px_-15px_rgba(4,30,6,0.4)] sm:py-16">
-          <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-white/[0.08]" />
           <div
             className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent"
             aria-hidden
@@ -86,7 +85,7 @@ export function Footer() {
           (no solid fill there either — just the decoration over the page's
           own background). */}
       <div className="relative rounded-t-[2.5rem] pt-34 shadow-[0_-25px_40px_-20px_rgba(16,24,18,0.18)] sm:pt-42">
-        <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
+        <DotGrid id="dot-grid-footer-shell" className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
         <div
           className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-primary-200/30 blur-3xl"
           aria-hidden
@@ -96,7 +95,7 @@ export function Footer() {
           aria-hidden
         />
 
-        <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-5 pb-16 sm:px-8 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr] lg:gap-8 lg:divide-x lg:divide-ink-200/60 lg:px-10 lg:pb-20">
+        <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-5 pb-8 sm:px-8 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr] lg:gap-8 lg:divide-x lg:divide-ink-200/60 lg:px-10 lg:pb-10">
           <div className="lg:pr-8">
             <Image src="/images/logo.png" alt="PT. Pakindo Impex Perkasa logo" width={177} height={67} className="h-16 w-auto" />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-600">{t("tagline")}</p>

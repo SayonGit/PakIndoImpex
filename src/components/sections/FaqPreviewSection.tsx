@@ -4,13 +4,40 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FaqAccordion, type FaqItem } from "@/components/ui/FaqAccordion";
 import { DotGrid } from "@/components/ui/DotGrid";
 
-export function FaqPreviewSection() {
+export function FaqPreviewSection({
+  standalone = true,
+}: {
+  /**
+   * false when composed directly below ExportMarketsSection on the
+   * homepage — skips this component's own <section>/background so the two
+   * share one continuous decorated background instead of each clipping its
+   * own glow blobs and creating a visible seam where they meet.
+   */
+  standalone?: boolean;
+} = {}) {
   const t = useTranslations("home.faq");
   const items = t.raw("items") as FaqItem[];
 
+  const content = (
+    <Container className="relative">
+      <SectionHeading eyebrow={t("eyebrow")} title={t("heading")} />
+      <div className="mt-10">
+        <FaqAccordion items={items} />
+      </div>
+    </Container>
+  );
+
+  if (!standalone) {
+    return (
+      <div id="faq" className="scroll-mt-24">
+        {content}
+      </div>
+    );
+  }
+
   return (
     <section id="faq" className="relative scroll-mt-24 overflow-hidden py-20 sm:py-28">
-      <DotGrid className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
+      <DotGrid id="dot-grid-faq" className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
       <div
         className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-primary-200/30 blur-3xl"
         aria-hidden
@@ -20,12 +47,7 @@ export function FaqPreviewSection() {
         aria-hidden
       />
 
-      <Container className="relative">
-        <SectionHeading eyebrow={t("eyebrow")} title={t("heading")} />
-        <div className="mt-10">
-          <FaqAccordion items={items} />
-        </div>
-      </Container>
+      {content}
     </section>
   );
 }

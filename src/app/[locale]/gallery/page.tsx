@@ -6,7 +6,6 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { EnglishContentNotice } from "@/components/ui/EnglishContentNotice";
-import { InlineCta } from "@/components/ui/InlineCta";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 
 export async function generateMetadata({
@@ -42,13 +41,13 @@ export default async function GalleryPage({
       <Breadcrumbs items={[{ name: "Gallery", path: "/gallery" }]} />
       <EnglishContentNotice />
 
-      <section className="py-16 sm:py-24">
-        <Container>
-          <GalleryGrid />
-        </Container>
-      </section>
-
-      <InlineCta message="Have a specific product or requirement in mind?" ctaLabel="Request a Quote" />
+      <div className="bg-white">
+        <section className="py-16 sm:py-24">
+          <Container>
+            <GalleryGrid />
+          </Container>
+        </section>
+      </div>
     </>
   );
 }
