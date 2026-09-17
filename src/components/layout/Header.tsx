@@ -1,20 +1,22 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { NAV_LINKS } from "@/lib/constants";
+import { getSiteSettings } from "@/lib/data";
 import { QuoteModalTrigger } from "@/components/quote/QuoteModalTrigger";
 import { CountryLanguageSwitcher } from "./CountryLanguageSwitcher";
 import { MobileNav } from "./MobileNav";
 
-export function Header() {
-  const t = useTranslations("nav");
+export async function Header() {
+  const t = await getTranslations("nav");
+  const settings = await getSiteSettings();
 
   return (
     <header className="shadow-soft sticky top-0 z-50 border-b border-ink-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 lg:px-10">
         <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image
-            src="/images/logo.png"
+            src={settings.logoUrl ?? "/images/logo.png"}
             alt="PT. Pakindo Impex Perkasa logo"
             width={177}
             height={67}

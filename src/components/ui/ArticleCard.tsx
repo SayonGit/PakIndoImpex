@@ -9,12 +9,14 @@ export function ArticleCard({
   category,
   slug,
   publishDate,
+  coverImageUrl,
 }: {
   title: string;
   excerpt: string;
   category: string;
   slug: string;
   publishDate: Date;
+  coverImageUrl?: string | null;
 }) {
   return (
     <Link
@@ -23,7 +25,7 @@ export function ArticleCard({
     >
       <div className="relative h-48 overflow-hidden bg-ink-900">
         <Image
-          src={placeholderPhoto(`article-${slug}`, 640, 400)}
+          src={coverImageUrl ?? placeholderPhoto(`article-${slug}`, 640, 400)}
           alt=""
           fill
           sizes="(min-width: 1024px) 33vw, 50vw"

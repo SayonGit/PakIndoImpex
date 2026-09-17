@@ -54,7 +54,7 @@ export default async function BlogArticlePage({
           <Container className="max-w-3xl">
             <div className="shadow-soft relative mb-10 aspect-video overflow-hidden rounded-3xl bg-ink-900">
               <Image
-                src={placeholderPhoto(`article-${article.slug}`, 1200, 675)}
+                src={article.coverImageUrl ?? placeholderPhoto(`article-${article.slug}`, 1200, 675)}
                 alt=""
                 fill
                 sizes="(min-width: 1024px) 768px, 100vw"

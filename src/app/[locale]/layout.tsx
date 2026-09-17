@@ -16,6 +16,12 @@ import { QuoteModalProvider } from "@/components/quote/QuoteModalContext";
 import { QuoteModal } from "@/components/quote/QuoteModal";
 import "../globals.css";
 
+// Header/Footer/TopBar all read site settings from Postgres (see
+// getSiteSettings() in src/lib/data.ts), which isn't reachable during
+// `next build` — force-dynamic here cascades to every page under this
+// layout, the same way each page's own DB-reading sections already do.
+export const dynamic = "force-dynamic";
+
 const openSans = Open_Sans({
   subsets: ["latin"],
   variable: "--font-open-sans",

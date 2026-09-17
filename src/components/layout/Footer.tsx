@@ -1,8 +1,9 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Handshake, Phone, Mail } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { NAV_LINKS, SOCIAL_LINKS, COMPANY } from "@/lib/constants";
+import { NAV_LINKS, COMPANY } from "@/lib/constants";
+import { getSiteSettings, getSocialLinks } from "@/lib/data";
 import { QuoteModalTextTrigger } from "@/components/quote/QuoteModalTextTrigger";
 import { QuoteModalTrigger } from "@/components/quote/QuoteModalTrigger";
 import { Button } from "@/components/ui/Button";
@@ -20,14 +21,17 @@ const SOCIAL_ICONS = {
 const COMPANY_NAV_KEYS = new Set(["home", "about", "products", "gallery"]);
 const RESOURCE_NAV_KEYS = new Set(["blog", "faq", "contact"]);
 
-export function Footer() {
-  const t = useTranslations("footer");
-  const tNav = useTranslations("nav");
-  const tCta = useTranslations("home.finalCta");
+export async function Footer() {
+  const t = await getTranslations("footer");
+  const tNav = await getTranslations("nav");
+  const tCta = await getTranslations("home.finalCta");
   const year = new Date().getFullYear();
 
   const companyLinks = NAV_LINKS.filter((link) => COMPANY_NAV_KEYS.has(link.key));
   const resourceLinks = NAV_LINKS.filter((link) => RESOURCE_NAV_KEYS.has(link.key));
+
+  const settings = await getSiteSettings();
+  const socialLinks = getSocialLinks(settings);
 
   return (
     <footer className="relative overflow-hidden bg-white">
@@ -97,10 +101,16 @@ export function Footer() {
 
         <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-5 pb-8 sm:px-8 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr] lg:gap-8 lg:divide-x lg:divide-ink-200/60 lg:px-10 lg:pb-10">
           <div className="lg:pr-8">
-            <Image src="/images/logo.png" alt="PT. Pakindo Impex Perkasa logo" width={177} height={67} className="h-16 w-auto" />
+            <Image
+              src={settings.logoUrl ?? "/images/logo.png"}
+              alt="PT. Pakindo Impex Perkasa logo"
+              width={177}
+              height={67}
+              className="h-16 w-auto"
+            />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-600">{t("tagline")}</p>
             <div className="mt-5 flex items-center gap-3">
-              {SOCIAL_LINKS.map((social) => {
+              {socialLinks.map((social) => {
                 const Icon = SOCIAL_ICONS[social.key];
                 return (
                   <a
@@ -178,24 +188,24 @@ export function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-ink-600">
               <li>
                 <a
-                  href={`tel:${COMPANY.phone}`}
+                  href={`tel:${settings.phone}`}
                   className="group flex items-center gap-3 hover:text-primary-700"
                 >
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-700 transition-transform duration-200 ease-spring group-hover:scale-110">
                     <Phone className="size-4" aria-hidden />
                   </span>
-                  {COMPANY.whatsapp}
+                  {settings.whatsapp}
                 </a>
               </li>
               <li>
                 <a
-                  href={`mailto:${COMPANY.email}`}
+                  href={`mailto:${settings.email}`}
                   className="group flex items-center gap-3 hover:text-primary-700"
                 >
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-700 transition-transform duration-200 ease-spring group-hover:scale-110">
                     <Mail className="size-4" aria-hidden />
                   </span>
-                  {COMPANY.email}
+                  {settings.email}
                 </a>
               </li>
             </ul>

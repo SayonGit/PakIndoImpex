@@ -3,7 +3,7 @@ import { MessageCircle, Mail, MapPin, Clock } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
-import { COMPANY } from "@/lib/constants";
+import { getSiteSettings, getPageSeo } from "@/lib/data";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -12,22 +12,17 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { ExportMarketsSection } from "@/components/sections/ExportMarketsSection";
 import { DotGrid } from "@/components/ui/DotGrid";
 
-const CONTACT_ITEMS = [
-  { icon: MessageCircle, label: "WhatsApp", value: COMPANY.whatsapp },
-  { icon: Mail, label: "Email", value: COMPANY.email },
-  { icon: MapPin, label: "Office", value: COMPANY.address },
-  { icon: Clock, label: "Business Hours", value: COMPANY.businessHours },
-];
-
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const pageSeo = await getPageSeo("/contact");
   return buildMetadata({
-    title: "Contact PT. Pakindo Impex Perkasa",
+    title: pageSeo?.seoTitle || "Contact PT. Pakindo Impex Perkasa",
     description:
+      pageSeo?.seoDescription ||
       "Contact PT. Pakindo Impex Perkasa for Indonesian product sourcing, export, import, and international trade inquiries.",
     path: "/contact",
     locale: locale as Locale,
@@ -41,6 +36,14 @@ export default async function ContactPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const settings = await getSiteSettings();
+  const contactItems = [
+    { icon: MessageCircle, label: "WhatsApp", value: settings.whatsapp },
+    { icon: Mail, label: "Email", value: settings.email },
+    { icon: MapPin, label: "Office", value: settings.address },
+    { icon: Clock, label: "Business Hours", value: settings.businessHours },
+  ];
 
   return (
     <>
@@ -77,7 +80,7 @@ export default async function ContactPage({
 
               <h2 className="relative text-2xl font-bold">Contact Information</h2>
               <div className="relative mt-8 space-y-6">
-                {CONTACT_ITEMS.map((item) => (
+                {contactItems.map((item) => (
                   <div key={item.label} className="flex items-start gap-4">
                     <item.icon className="mt-0.5 size-5 shrink-0 text-gold-300" aria-hidden />
                     <div>

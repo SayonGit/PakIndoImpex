@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { COMPANY } from "../src/lib/constants";
 
 const prisma = new PrismaClient();
 
@@ -154,6 +155,48 @@ async function main() {
       },
     });
   }
+
+  // Gallery items are real admin-uploaded photos/videos only (see
+  // /admin/gallery) — nothing to seed here by design.
+
+  // Seeds today's 5 placeholder testimonials as real Testimonial rows, so
+  // switching TestimonialsSection over to the DB (see
+  // getPublishedTestimonials()) doesn't change anything until an admin
+  // edits it via /admin/testimonials. These were previously illustrative
+  // copy in home.testimonials.items — still not real buyer quotes, just
+  // now DB-managed instead of i18n-managed (see PLACEHOLDER CONTENT note
+  // that used to live on TestimonialsSection.tsx).
+  const TESTIMONIALS_SEED = [
+    { quote: "Clear communication and consistent quality made sourcing from Indonesia straightforward.", role: "Importer", country: "India" },
+    { quote: "Our shipments have been on schedule with accurate documentation every time.", role: "Trading Partner", country: "Bangladesh" },
+    { quote: "Responsive on WhatsApp and transparent about pricing and specifications.", role: "Procurement Manager", country: "Malaysia" },
+    { quote: "A dependable partner for areca nut sourcing with honest grading.", role: "Buyer", country: "Pakistan" },
+    { quote: "Smooth coordination from inquiry to loading, with clear updates throughout.", role: "Import Manager", country: "Singapore" },
+  ];
+  for (const [index, item] of TESTIMONIALS_SEED.entries()) {
+    const existing = await prisma.testimonial.findFirst({ where: { quote: item.quote } });
+    if (!existing) {
+      await prisma.testimonial.create({ data: { ...item, sortOrder: index } });
+    }
+  }
+
+  // Seeds the SiteSettings singleton from today's hardcoded COMPANY
+  // constant, so switching Header/Footer/etc. over to DB-backed settings
+  // (see src/lib/data.ts getSiteSettings()) doesn't change anything visible
+  // until an admin edits it via /admin/settings.
+  await prisma.siteSettings.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      id: 1,
+      phone: COMPANY.phone,
+      whatsapp: COMPANY.whatsapp,
+      email: COMPANY.email,
+      address: COMPANY.address,
+      shortAddress: COMPANY.shortAddress,
+      businessHours: COMPANY.businessHours,
+    },
+  });
 
   console.log("Seed complete.");
 }

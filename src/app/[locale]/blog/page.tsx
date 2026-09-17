@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
-import { getPublishedArticles } from "@/lib/data";
+import { getPublishedArticles, getPageSeo } from "@/lib/data";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -17,9 +17,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const pageSeo = await getPageSeo("/blog");
   return buildMetadata({
-    title: "Export & Sourcing Guides | PT. Pakindo Impex Perkasa",
+    title: pageSeo?.seoTitle || "Export & Sourcing Guides | PT. Pakindo Impex Perkasa",
     description:
+      pageSeo?.seoDescription ||
       "Guides for international buyers researching Indonesian suppliers, export documentation, shipping terms, and the import process.",
     path: "/blog",
     locale: locale as Locale,
@@ -57,6 +59,7 @@ export default async function BlogPage({
                   excerpt={article.excerpt}
                   category={article.category}
                   publishDate={article.publishDate}
+                  coverImageUrl={article.coverImageUrl}
                 />
               ))}
             </div>

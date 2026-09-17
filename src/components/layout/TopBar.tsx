@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 import { Phone, Mail, MapPin, Share2 } from "lucide-react";
-import { COMPANY, SOCIAL_LINKS } from "@/lib/constants";
+import { getSiteSettings, getSocialLinks } from "@/lib/data";
 import { FacebookIcon, InstagramIcon, TwitterXIcon, YouTubeIcon } from "@/components/ui/SocialIcons";
 
 const SOCIAL_ICONS = {
@@ -49,7 +49,9 @@ function ContactLink({
 // Vertical swap-reveal button, adapted from the Uiverse.io "swift-bullfrog"
 // pattern: the label slides up out of the clipped button while the social
 // icons slide up into its place from below, staggered per icon.
-function SocialReveal() {
+function SocialReveal({ socialLinks }: { socialLinks: ReturnType<typeof getSocialLinks> }) {
+  if (socialLinks.length === 0) return null;
+
   return (
     <div className="group relative flex h-8 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full px-4 text-primary-800 transition-all duration-300 ease-spring hover:scale-105 hover:text-primary-950">
       <span className="flex items-center gap-1.5 text-xs font-bold tracking-wide whitespace-nowrap uppercase transition-transform duration-300 ease-[cubic-bezier(0.215,0.61,0.355,1)] group-hover:-translate-y-8">
@@ -57,7 +59,7 @@ function SocialReveal() {
         <Share2 className="size-4 shrink-0" aria-hidden />
       </span>
       <ul className="absolute inset-0 m-0 flex list-none items-center justify-center gap-3 p-0">
-        {SOCIAL_LINKS.map((social, i) => {
+        {socialLinks.map((social, i) => {
           const Icon = SOCIAL_ICONS[social.key];
           return (
             <li key={social.key} className="flex">
@@ -79,32 +81,35 @@ function SocialReveal() {
   );
 }
 
-export function TopBar() {
+export async function TopBar() {
+  const settings = await getSiteSettings();
+  const socialLinks = getSocialLinks(settings);
+
   return (
     <div className="hidden bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 text-black shadow-[0_1px_0_rgba(0,0,0,0.08)] sm:block">
       <div className="mx-auto flex h-10 w-full max-w-7xl items-center justify-between gap-4 px-5 text-xs sm:px-8 lg:px-10">
         <div className="flex min-w-0 items-center gap-5">
-          <ContactLink href={`tel:${COMPANY.phone}`} icon={Phone}>
-            {COMPANY.phone}
+          <ContactLink href={`tel:${settings.phone}`} icon={Phone}>
+            {settings.phone}
           </ContactLink>
 
           <Separator className="hidden md:block" />
-          <ContactLink href={`mailto:${COMPANY.email}`} icon={Mail} className="hidden md:flex">
-            {COMPANY.email}
+          <ContactLink href={`mailto:${settings.email}`} icon={Mail} className="hidden md:flex">
+            {settings.email}
           </ContactLink>
 
           <Separator className="hidden lg:block" />
           <ContactLink
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY.address)}`}
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(settings.address)}`}
             icon={MapPin}
             external
             className="hidden lg:flex"
           >
-            {COMPANY.shortAddress}
+            {settings.shortAddress}
           </ContactLink>
         </div>
 
-        <SocialReveal />
+        <SocialReveal socialLinks={socialLinks} />
       </div>
     </div>
   );

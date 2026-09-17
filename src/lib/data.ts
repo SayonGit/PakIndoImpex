@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache";
 import { prisma } from "./prisma";
+import { COMPANY, SOCIAL_PLATFORMS } from "./constants";
 
 /**
  * All reads here are wrapped in unstable_cache so repeated page loads don't
@@ -119,3 +120,92 @@ export async function getRelatedArticlesForProduct(productSlug: string, limit = 
   const articles = await _getRelatedArticlesForProduct(productSlug, limit);
   return articles.map(hydratePublishDate);
 }
+
+export type SiteSettingsData = {
+  phone: string;
+  whatsapp: string;
+  email: string;
+  address: string;
+  shortAddress: string;
+  businessHours: string;
+  facebookUrl: string | null;
+  instagramUrl: string | null;
+  twitterUrl: string | null;
+  youtubeUrl: string | null;
+  logoUrl: string | null;
+  faviconUrl: string | null;
+};
+
+/** Used until an admin sets real values via /admin/settings. */
+const DEFAULT_SITE_SETTINGS: SiteSettingsData = {
+  phone: COMPANY.phone,
+  whatsapp: COMPANY.whatsapp,
+  email: COMPANY.email,
+  address: COMPANY.address,
+  shortAddress: COMPANY.shortAddress,
+  businessHours: COMPANY.businessHours,
+  facebookUrl: null,
+  instagramUrl: null,
+  twitterUrl: null,
+  youtubeUrl: null,
+  logoUrl: null,
+  faviconUrl: null,
+};
+
+export const getSiteSettings = unstable_cache(
+  async (): Promise<SiteSettingsData> => {
+    const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
+    return settings ?? DEFAULT_SITE_SETTINGS;
+  },
+  ["site-settings"],
+  { revalidate: REVALIDATE_SECONDS, tags: ["settings"] }
+);
+
+/** Social platforms with a real URL set, in SOCIAL_PLATFORMS order — never a fake "#" href. */
+export function getSocialLinks(settings: SiteSettingsData) {
+  const hrefByKey: Record<(typeof SOCIAL_PLATFORMS)[number]["key"], string | null> = {
+    facebook: settings.facebookUrl,
+    instagram: settings.instagramUrl,
+    twitter: settings.twitterUrl,
+    youtube: settings.youtubeUrl,
+  };
+  return SOCIAL_PLATFORMS.map((platform) => ({ ...platform, href: hrefByKey[platform.key] })).filter(
+    (platform): platform is typeof platform & { href: string } => Boolean(platform.href)
+  );
+}
+
+export const getPublishedTestimonials = unstable_cache(
+  async () =>
+    prisma.testimonial.findMany({
+      where: { published: true },
+      orderBy: { sortOrder: "asc" },
+    }),
+  ["published-testimonials"],
+  { revalidate: REVALIDATE_SECONDS, tags: ["testimonials"] }
+);
+
+export const getPublishedTeamMembers = unstable_cache(
+  async () =>
+    prisma.teamMember.findMany({
+      where: { published: true },
+      orderBy: { sortOrder: "asc" },
+    }),
+  ["published-team-members"],
+  { revalidate: REVALIDATE_SECONDS, tags: ["team"] }
+);
+
+export const getGalleryItems = unstable_cache(
+  async () =>
+    prisma.galleryItem.findMany({
+      where: { published: true },
+      orderBy: { sortOrder: "asc" },
+    }),
+  ["gallery-items"],
+  { revalidate: REVALIDATE_SECONDS, tags: ["gallery"] }
+);
+
+export const getPageSeo = unstable_cache(
+  async (path: string) => prisma.pageSeo.findUnique({ where: { path } }),
+  ["page-seo"],
+  { revalidate: REVALIDATE_SECONDS, tags: ["page-seo"] }
+);

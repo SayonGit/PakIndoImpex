@@ -302,34 +302,7 @@
     "testimonials": {
       "eyebrow": "Testimonials",
       "heading": "What Our Buyers Say",
-      "description": "Feedback from the international buyers we work with.",
-      "items": [
-        {
-          "quote": "Clear communication and consistent quality made sourcing from Indonesia straightforward.",
-          "role": "Importer",
-          "country": "India"
-        },
-        {
-          "quote": "Our shipments have been on schedule with accurate documentation every time.",
-          "role": "Trading Partner",
-          "country": "Bangladesh"
-        },
-        {
-          "quote": "Responsive on WhatsApp and transparent about pricing and specifications.",
-          "role": "Procurement Manager",
-          "country": "Malaysia"
-        },
-        {
-          "quote": "A dependable partner for areca nut sourcing with honest grading.",
-          "role": "Buyer",
-          "country": "Pakistan"
-        },
-        {
-          "quote": "Smooth coordination from inquiry to loading, with clear updates throughout.",
-          "role": "Import Manager",
-          "country": "Singapore"
-        }
-      ]
+      "description": "Feedback from the international buyers we work with."
     }
   }
 }

@@ -22,19 +22,24 @@ export const COMPANY = {
   businessHours: "Monday – Friday: 8:00 AM – 4:00 PM / Saturday: 8:00 AM – 1:00 PM / Sunday: Closed",
 } as const;
 
-/** wa.me deep link for the floating WhatsApp button. */
-export const WHATSAPP_LINK =
-  "https://wa.me/+6281310188888/?text=Hello,%20I%20visited%20your%20website%20and%20would%20like%20more%20information%20about%20your%20products.";
+const WHATSAPP_DEFAULT_MESSAGE =
+  "Hello, I visited your website and would like more information about your products.";
+
+/** wa.me deep link for the floating WhatsApp button, built from the admin-editable number (see getSiteSettings()). */
+export function buildWhatsAppLink(phone: string, message: string = WHATSAPP_DEFAULT_MESSAGE): string {
+  return `https://wa.me/${phone.replace(/[^\d]/g, "")}/?text=${encodeURIComponent(message)}`;
+}
 
 /**
- * Social profile links — NOT yet verified. Hrefs stay "#" (inert) until the
- * business owner supplies real URLs; never fabricate a handle or profile.
+ * Which social platforms the site shows an icon for — the URL itself is
+ * admin-editable (see SiteSettings/getSiteSettings()); a platform with no
+ * URL set is simply not rendered, rather than linking to a fake "#" href.
  */
-export const SOCIAL_LINKS = [
-  { key: "facebook", href: "#", label: "Facebook" },
-  { key: "instagram", href: "#", label: "Instagram" },
-  { key: "twitter", href: "#", label: "Twitter / X" },
-  { key: "youtube", href: "#", label: "YouTube" },
+export const SOCIAL_PLATFORMS = [
+  { key: "facebook", label: "Facebook" },
+  { key: "instagram", label: "Instagram" },
+  { key: "twitter", label: "Twitter / X" },
+  { key: "youtube", label: "YouTube" },
 ] as const;
 
 export const NAV_LINKS = [

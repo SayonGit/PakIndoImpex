@@ -1,18 +1,14 @@
+import Image from "next/image";
 import { Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { DotGrid } from "@/components/ui/DotGrid";
+import { getPublishedTeamMembers } from "@/lib/data";
 
-const TEAM_PLACEHOLDERS = 4;
+export async function TeamSection() {
+  const members = await getPublishedTeamMembers();
+  if (members.length === 0) return null;
 
-/**
- * Placeholder-ready Team section. assets/CONTENT.md explicitly forbids
- * inventing employee/team information, and no real names, roles, or photos
- * exist yet — every card here is an honest "coming soon" placeholder (a
- * generic icon, no fabricated name or stock photo standing in for a real
- * person). Swap in real people/photos once confirmed.
- */
-export function TeamSection() {
   return (
     <section className="relative overflow-hidden py-16 sm:py-24">
       <DotGrid id="dot-grid-team" className="pointer-events-none absolute inset-0 h-full w-full text-ink-900/[0.035]" />
@@ -26,23 +22,23 @@ export function TeamSection() {
       />
 
       <Container className="relative">
-        <SectionHeading
-          eyebrow="Our People"
-          title="Meet the Team"
-          description="Team profiles are pending verification and will be published once confirmed."
-        />
+        <SectionHeading eyebrow="Our People" title="Meet the Team" />
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {Array.from({ length: TEAM_PLACEHOLDERS }).map((_, index) => (
+          {members.map((member) => (
             <div
-              key={index}
+              key={member.id}
               className="group shadow-soft flex flex-col items-center rounded-3xl border border-ink-100 bg-white p-8 text-center transition-all duration-300 ease-spring hover:-translate-y-1.5 hover:shadow-soft-lg"
             >
-              <span className="flex size-20 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-700 text-white shadow-[0_8px_20px_-8px_rgba(18,106,22,0.4)] transition-transform duration-300 ease-spring group-hover:scale-105">
-                <Users className="size-9" strokeWidth={1.75} aria-hidden />
+              <span className="relative flex size-20 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-primary-500 to-primary-700 text-white shadow-[0_8px_20px_-8px_rgba(18,106,22,0.4)] transition-transform duration-300 ease-spring group-hover:scale-105">
+                {member.photoUrl ? (
+                  <Image src={member.photoUrl} alt={member.name} fill sizes="80px" className="object-cover" />
+                ) : (
+                  <Users className="size-9" strokeWidth={1.75} aria-hidden />
+                )}
               </span>
-              <p className="mt-5 text-sm font-bold text-ink-800">Profile Coming Soon</p>
-              <p className="mt-1 text-xs font-medium tracking-wide text-ink-400 uppercase">Role Pending</p>
+              <p className="mt-5 text-sm font-bold text-ink-800">{member.name}</p>
+              <p className="mt-1 text-xs font-medium tracking-wide text-ink-400 uppercase">{member.role}</p>
             </div>
           ))}
         </div>

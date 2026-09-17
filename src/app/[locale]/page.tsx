@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
+import { getPageSeo } from "@/lib/data";
 import { faqJsonLd } from "@/lib/structured-data";
 import type { FaqItem } from "@/components/ui/FaqAccordion";
 import { Hero } from "@/components/sections/Hero";
@@ -26,9 +27,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const pageSeo = await getPageSeo("/");
   return buildMetadata({
-    title: "PT. Pakindo Impex Perkasa | Indonesian Export & Import Partner",
+    title: pageSeo?.seoTitle || "PT. Pakindo Impex Perkasa | Indonesian Export & Import Partner",
     description:
+      pageSeo?.seoDescription ||
       "PT. Pakindo Impex Perkasa connects international buyers with Indonesian products through sourcing, quality coordination, export documentation, and logistics support.",
     path: "/",
     locale: locale as Locale,

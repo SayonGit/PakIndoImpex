@@ -1,10 +1,13 @@
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
-import { WHATSAPP_LINK } from "@/lib/constants";
+import { buildWhatsAppLink } from "@/lib/constants";
+import { getSiteSettings } from "@/lib/data";
 
-export function WhatsAppButton() {
+export async function WhatsAppButton() {
+  const settings = await getSiteSettings();
+
   return (
     <a
-      href={WHATSAPP_LINK}
+      href={buildWhatsAppLink(settings.whatsapp)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"

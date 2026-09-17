@@ -11,6 +11,7 @@ function FieldWrapper({
   htmlFor,
   children,
   className,
+  hint,
 }: {
   label: string;
   required?: boolean;
@@ -18,6 +19,7 @@ function FieldWrapper({
   htmlFor: string;
   children: ReactNode;
   className?: string;
+  hint?: string;
 }) {
   return (
     <div className={className}>
@@ -29,6 +31,7 @@ function FieldWrapper({
           </span>
         )}
       </label>
+      {hint && <p className="mb-1.5 text-xs text-ink-500">{hint}</p>}
       {children}
       {error && (
         <p className="mt-1.5 text-xs font-medium text-secondary-600" role="alert">
@@ -45,6 +48,7 @@ export function TextField({
   required,
   error,
   className,
+  hint,
   ...rest
 }: {
   label: string;
@@ -52,10 +56,11 @@ export function TextField({
   required?: boolean;
   error?: string;
   className?: string;
+  hint?: string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "name" | "id" | "className">) {
   const id = useId();
   return (
-    <FieldWrapper label={label} required={required} error={error} htmlFor={id} className={className}>
+    <FieldWrapper label={label} required={required} error={error} htmlFor={id} className={className} hint={hint}>
       <input
         id={id}
         name={name}

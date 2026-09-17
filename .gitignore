@@ -42,3 +42,8 @@ dev-err.log
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# admin-uploaded files (runtime data, not source — see src/lib/uploads.ts).
+# Deliberately outside public/ — see the comment in src/lib/uploads.ts.
+/uploads/*
+!/uploads/.gitkeep

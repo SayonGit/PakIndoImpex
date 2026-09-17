@@ -17,7 +17,7 @@ yet verified is shown as an explicit `[VERIFY: ...]` placeholder.
 - **i18n**: next-intl — English is the source of truth; `hi`, `ur`, `fa`,
   `ne`, `bn`, `zh`, `ms` are AI/machine-translated (see "i18n scope" below)
 - **Database**: PostgreSQL via Prisma ORM (`prisma/schema.prisma`)
-- **Email**: Resend (inactive until `RESEND_API_KEY` is set — see below)
+- **Email**: SMTP via Nodemailer — configured from `/admin/settings`, not env vars
 - **Validation**: Zod (shared client/server schemas in `src/lib/validations.ts`)
 
 ## Getting started
@@ -79,10 +79,10 @@ project reads secrets on the client — server-only env vars are only ever
 used inside API routes / Server Components.
 
 - `DATABASE_URL` — Postgres connection string
-- `RESEND_API_KEY`, `NOTIFICATIONS_FROM_EMAIL`, `NOTIFICATIONS_TO_EMAIL` —
-  optional email notifications for the Request a Quote / Contact forms.
-  **Inactive until set** — see `src/lib/email.ts`. Until then, submissions
-  are still saved to Postgres; nothing is silently lost.
+- Email notifications for the Request a Quote / Contact forms are
+  configured from `/admin/settings` (SMTP host/port/credentials), not env
+  vars — see `src/lib/email.ts`. **Inactive until set up there.** Until
+  then, submissions are still saved to Postgres; nothing is silently lost.
 - `NEXT_PUBLIC_SITE_URL` — used for canonical URLs, sitemap, and OG tags
 - `GEMINI_API_KEY` — only needed to run `npm run translate` (see below). Free
   to get, no credit card required. Never read by the site itself at runtime.
